@@ -1,0 +1,12 @@
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\bin\Debug\MailBomber.exe.config
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\bin\Debug\MailBomber.exe
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\bin\Debug\MailBomber.pdb
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\bin\Debug\System.Data.SQLite.dll
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\bin\Debug\System.Data.SQLite.Linq.dll
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\bin\Debug\System.Data.SQLite.xml
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\Debug\MailBomber.csprojResolveAssemblyReference.cache
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\Debug\MailBomber.Form1.resources
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\Debug\MailBomber.Properties.Resources.resources
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\Debug\MailBomber.csproj.GenerateResource.Cache
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\Debug\MailBomber.exe
+c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\Debug\MailBomber.pdb
