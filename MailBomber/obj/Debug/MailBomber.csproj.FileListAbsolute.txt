@@ -10,3 +10,6 @@ c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\
 c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\Debug\MailBomber.csproj.GenerateResource.Cache
 c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\Debug\MailBomber.exe
 c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\Debug\MailBomber.pdb
+G:\GIT\MailBomber\MailBomber\bin\Debug\MailBomber.exe.config
+G:\GIT\MailBomber\MailBomber\obj\Debug\MailBomber.exe
+G:\GIT\MailBomber\MailBomber\obj\Debug\MailBomber.pdb
