@@ -13,3 +13,7 @@ c:\users\дом\documents\visual studio 2015\Projects\MailBomber\MailBomber\obj\
 G:\GIT\MailBomber\MailBomber\bin\Debug\MailBomber.exe.config
 G:\GIT\MailBomber\MailBomber\obj\Debug\MailBomber.exe
 G:\GIT\MailBomber\MailBomber\obj\Debug\MailBomber.pdb
+G:\GIT\MailBomber\MailBomber\obj\Debug\MailBomber.csprojResolveAssemblyReference.cache
+G:\GIT\MailBomber\MailBomber\obj\Debug\MailBomber.Form1.resources
+G:\GIT\MailBomber\MailBomber\obj\Debug\MailBomber.Properties.Resources.resources
+G:\GIT\MailBomber\MailBomber\obj\Debug\MailBomber.csproj.GenerateResource.Cache
