@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MailBomber
@@ -14,12 +15,6 @@ namespace MailBomber
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            DBWorker dw = DBWorker.getInstance;
-            
         }
     }
 }
