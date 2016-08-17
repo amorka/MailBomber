@@ -16,11 +16,5 @@ namespace MailBomber
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            DBWorker dw = DBWorker.getInstance;
-            dw.test();
-        }
     }
 }
