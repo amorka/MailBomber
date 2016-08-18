@@ -19,15 +19,32 @@ namespace MailBomber
 
         private void ImportDB_Load(object sender, EventArgs e)
         {
-            lv_allInfo.Columns.Add("firms");
-            lv_allInfo.Columns.Add("mails");
-            lv_allInfo.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            lv_allInfo.View = View.Details;
+            dgv_all.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "INFO",
+                DataPropertyName = "info",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+
+            dgv_all.AutoGenerateColumns = false;
+
+            DataInfo di = new DataInfo();
+            di.firms = new List<Firm>();
+            di.firms.Add(new Firm() { name = "Firm1" });
+            di.firms.Add(new Firm() { name = "Firm2" });
+            di.mails = new List<Mail>();
+            di.mails.Add(new Mail() { mail="mail@1"});
+            di.mails.Add(new Mail() { mail = "mail@2" });
+            ChangeDataSource(di);
         }
 
         private void ChangeDataSource(DataInfo di)
         {
-            int a; 
+            
+            dgv_all.DataSource = di.combo_info;
+
+
+
         }
     }
 }

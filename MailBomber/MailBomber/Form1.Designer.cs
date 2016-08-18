@@ -57,6 +57,7 @@
             this.импортБазыИзtxtToolStripMenuItem.Name = "импортБазыИзtxtToolStripMenuItem";
             this.импортБазыИзtxtToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.импортБазыИзtxtToolStripMenuItem.Text = "Импорт базы из .txt";
+            this.импортБазыИзtxtToolStripMenuItem.Click += new System.EventHandler(this.импортБазыИзtxtToolStripMenuItem_Click);
             // 
             // Form1
             // 
