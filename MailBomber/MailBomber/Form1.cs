@@ -23,29 +23,29 @@ namespace MailBomber
 
             //dw.AddFrirmMail(
             //     new Firm() { name = "Firm 1" },
-            //     new Mail() { mail= "mail1@mail.ru" }
+            //     new Mail() { mail = "mail1@mail.ru" }
             //    );
             //dw.AddFrirmMail(
             //     new Firm() { name = "Firm 2" },
             //     new Mail() { mail = "mail2@mail.ru" }
             //    );
             //dw.AddFrirmMail(
-            //     new Firm() { name = "Firm 2"},
+            //     new Firm() { name = "Firm 2" },
             //     new Mail() { mail = "mail22@mail.ru" }
             //    );
             //dw.AddFrirmMail(
-            //     new Firm() { name = "Firm 2"},
+            //     new Firm() { name = "Firm 2" },
             //     new Mail() { mail = "mail222@mail.ru" }
             //    );
             //dw.AddFrirmMail(
             //     new Firm() { name = "Firm 3" },
             //     new Mail() { mail = "mail3@mail.ru" }
             //    );
-            //dw.AddFrirmMail(
-            //     new Firm() { name = "Firm 3" },
-            //     new Mail() { mail = "mail22@mail.ru" }
-            //    );
 
+
+            //List<Mail> ml = dw.GetMailsFromFirm(new Firm() { name= "Firm 2" });
+            //listBox1.DataSource = ml;
+            //listBox1.DisplayMember = "mail";
         }
     }
 }
