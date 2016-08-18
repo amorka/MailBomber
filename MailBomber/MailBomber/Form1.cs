@@ -21,26 +21,30 @@ namespace MailBomber
         {
             DBWorker dw = DBWorker.Instance;
 
-            dw.AddFrirmMail(
-                 new Firm() { name = "Firm 1", id = -1 },
-                 new Mail() { mail="mail1@mail.ru", id = -1 }
-                );
-            dw.AddFrirmMail(
-                 new Firm() { name = "Firm 2", id = -1 },
-                 new Mail() { mail = "mail2@mail.ru", id = -1 }
-                );
-            dw.AddFrirmMail(
-                 new Firm() { name = "Firm 2", id = -1 },
-                 new Mail() { mail = "mail22@mail.ru", id = -1 }
-                );
-            dw.AddFrirmMail(
-                 new Firm() { name = "Firm 2", id = -1 },
-                 new Mail() { mail = "mail222@mail.ru", id = -1 }
-                );
-            dw.AddFrirmMail(
-                 new Firm() { name = "Firm 3", id = -1 },
-                 new Mail() { mail = "mail3@mail.ru", id = -1 }
-                );
+            //dw.AddFrirmMail(
+            //     new Firm() { name = "Firm 1" },
+            //     new Mail() { mail= "mail1@mail.ru" }
+            //    );
+            //dw.AddFrirmMail(
+            //     new Firm() { name = "Firm 2" },
+            //     new Mail() { mail = "mail2@mail.ru" }
+            //    );
+            //dw.AddFrirmMail(
+            //     new Firm() { name = "Firm 2"},
+            //     new Mail() { mail = "mail22@mail.ru" }
+            //    );
+            //dw.AddFrirmMail(
+            //     new Firm() { name = "Firm 2"},
+            //     new Mail() { mail = "mail222@mail.ru" }
+            //    );
+            //dw.AddFrirmMail(
+            //     new Firm() { name = "Firm 3" },
+            //     new Mail() { mail = "mail3@mail.ru" }
+            //    );
+            //dw.AddFrirmMail(
+            //     new Firm() { name = "Firm 3" },
+            //     new Mail() { mail = "mail22@mail.ru" }
+            //    );
 
         }
     }
