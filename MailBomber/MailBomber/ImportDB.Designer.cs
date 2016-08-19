@@ -31,6 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgv_all = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lbFirms = new System.Windows.Forms.ListBox();
@@ -39,14 +40,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.dgv_all = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_all)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_all)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -86,6 +86,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Общая информация";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dgv_all
+            // 
+            this.dgv_all.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_all.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_all.Location = new System.Drawing.Point(3, 3);
+            this.dgv_all.Name = "dgv_all";
+            this.dgv_all.Size = new System.Drawing.Size(538, 220);
+            this.dgv_all.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -136,7 +145,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.41553F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88.58447F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
             this.tableLayoutPanel3.Controls.Add(this.button1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.button2, 2, 0);
@@ -157,12 +166,13 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "...";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 12);
+            this.label1.Location = new System.Drawing.Point(52, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 1;
@@ -177,15 +187,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Импортировать";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // dgv_all
-            // 
-            this.dgv_all.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_all.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_all.Location = new System.Drawing.Point(3, 3);
-            this.dgv_all.Name = "dgv_all";
-            this.dgv_all.Size = new System.Drawing.Size(538, 220);
-            this.dgv_all.TabIndex = 0;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ImportDB
             // 
@@ -203,11 +205,11 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_all)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_all)).EndInit();
             this.ResumeLayout(false);
 
         }
