@@ -16,6 +16,15 @@ namespace MailBomber
         private string file_to_import = "";
         DataInfo di;
 
+        public delegate void DlgObjSetMaxPB();
+        DlgObjSetMaxPB DlgSetMaxPB;
+
+        public delegate void DlgObjSetValPB(int v);
+        DlgObjSetValPB DlgSetValPB;
+
+        public delegate void DlgObjSetValLB(string s);
+        DlgObjSetValLB DlgSetValLB;
+
         public ImportDB()
         {
             InitializeComponent();
@@ -32,6 +41,12 @@ namespace MailBomber
                
             });
             dgv_all.AutoGenerateColumns = false;
+            pb.Minimum = 0;
+            pb.Step = 1;
+            DlgSetMaxPB = new DlgObjSetMaxPB(SetMaxPB);
+            DlgSetValPB = new DlgObjSetValPB(SetValuePB);
+            DlgSetValLB = new DlgObjSetValLB(SetValLB);
+
         }
 
         private void ChangeDataSource(DataInfo di)
@@ -64,12 +79,41 @@ namespace MailBomber
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (di != null) {
+
+            Task task_add_in_base = new Task(add_in_base);
+            task_add_in_base.Start();
+
+
+        }
+
+        private void add_in_base() {
+            if (di != null)
+            {
                 DBWorker dw = DBWorker.Instance;
-                for (int i = 0; i < di.mails.Count; i++) {
+                pb.Invoke(DlgSetMaxPB);
+                
+                for (int i = 0; i < di.mails.Count; i++)
+                {
                     dw.AddFrirmMail(di.firms[i], di.mails[i]);
+                    pb.Invoke(DlgSetValPB, new object [] { pb.Value });
+                    label1.Invoke(DlgSetValLB, new object[] { di.mails[i].mail });
                 }
             }
+
+        }
+
+        
+        private void SetMaxPB() {
+            pb.Maximum = di.mails.Count;
+        }
+
+        private void SetValuePB( int value)
+        {
+            pb.Value= value;
+        }
+
+        private void SetValLB(string s) {
+            label1.Text = s;
         }
     }
 }
