@@ -81,23 +81,25 @@ namespace MailBomber
         {
 
             Task task_add_in_base = new Task(add_in_base);
+            DBWorker.Instance.BeginWork();
             task_add_in_base.Start();
 
 
         }
 
-        private void add_in_base() {
+      private void add_in_base() {
             if (di != null)
             {
-                DBWorker dw = DBWorker.Instance;
                 pb.Invoke(DlgSetMaxPB);
-                
+               
                 for (int i = 0; i < di.mails.Count; i++)
                 {
-                    dw.AddFrirmMail(di.firms[i], di.mails[i]);
-                    pb.Invoke(DlgSetValPB, new object [] { pb.Value });
-                    label1.Invoke(DlgSetValLB, new object[] { di.mails[i].mail });
+                        DBWorker.Instance.AddFrirmMailWork(di.firms[i], di.mails[i]);
+                        pb.Invoke(DlgSetValPB, new object[] { i });
+                        label1.Invoke(DlgSetValLB, new object[] { di.mails[i].mail });
                 }
+                DBWorker.Instance.EndWork();
+                MessageBox.Show("Импорт завершен!");
             }
 
         }

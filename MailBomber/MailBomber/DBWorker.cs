@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
+using System.Windows.Forms;
 
 namespace MailBomber
 {
@@ -68,6 +69,12 @@ namespace MailBomber
             com.CommandText = "INSERT INTO mails (mail) VALUES ('"+m.mail+"');";
             com.ExecuteNonQuery();
             CloseConnection();
+        }
+        private void AddMailWork(Mail m)
+        {
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "INSERT INTO mails (mail) VALUES ('" + m.mail + "');";
+            com.ExecuteNonQuery();
         }
         private void AddMails(List<Mail> ml)
         {
@@ -147,6 +154,27 @@ namespace MailBomber
             }
             return tmp;
         }
+        private Mail GetMailWork(Mail m, MailSearch ms)
+        {
+            Mail tmp = null;
+            SQLiteCommand com = connection.CreateCommand();
+            if (ms == MailSearch.ID)
+            {
+                com.CommandText = "SELECT * FROM mails WHERE id=" + m.id + ";";
+            }
+            else {
+                com.CommandText = "SELECT * FROM mails WHERE mail LIKE '" + m.mail + "';";
+            }
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0)
+            {
+                while (r.Read())
+                {
+                    tmp = new Mail() { id = Int32.Parse(r["id"].ToString()), mail = r["mail"].ToString() };
+                }
+            }
+            return tmp;
+        }
         private List<Mail> GetMails() {
             CreateConnection();
             List<Mail> tmp_mails = null;
@@ -173,6 +201,12 @@ namespace MailBomber
             com.CommandText = "INSERT INTO firms (name) VALUES ('" + f.name + "');";
             com.ExecuteNonQuery();
             CloseConnection();
+        }
+        private void AddFirmWork(Firm f)
+        {
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "INSERT INTO firms (name) VALUES ('" + f.name + "');";
+            com.ExecuteNonQuery();
         }
         private void AddFirms(List<Firm> fl)
         {
@@ -254,6 +288,27 @@ namespace MailBomber
             CloseConnection();
             return tmp;
         }
+        private Firm GetFirmWork(Firm f, FirmSearch fs)
+        {
+            Firm tmp = null;
+            SQLiteCommand com = connection.CreateCommand();
+            if (fs == FirmSearch.ID)
+            {
+                com.CommandText = "SELECT * FROM firms WHERE id=" + f.id + " LIMIT 1;";
+            }
+            else {
+                com.CommandText = "SELECT * FROM firms WHERE name LIKE '" + f.name + "'  LIMIT 1;";
+            }
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0)
+            {
+                while (r.Read())
+                {
+                    tmp = new Firm() { id = Int32.Parse(r["id"].ToString()), name = r["name"].ToString() };
+                }
+            }
+            return tmp;
+        }
         private List<Firm> GetFrims()
         {
             CreateConnection();
@@ -293,6 +348,24 @@ namespace MailBomber
                 CloseConnection();
             }
         }
+        public void AddFrirmMailWork(Firm f, Mail m)
+        {
+            // add firm
+                Firm test_f = GetFirmWork(f, FirmSearch.NAME);
+                if (test_f == null)
+                {
+                    AddFirmWork(f);
+                }
+                Mail test_m = GetMailWork(m, MailSearch.MAIL);
+                if (test_m == null)
+                {
+                    AddMailWork(m);
+                    SQLiteCommand com = connection.CreateCommand();
+                    com.CommandText = "INSERT INTO firm_mails (id_firm, id_mail) VALUES (" + GetFirmWork(f, FirmSearch.NAME).id + "," + GetMailWork(m, MailSearch.MAIL).id + ");";
+                    com.ExecuteNonQuery();
+                }
+            
+         }
 
         public List<Mail> GetMailsFromFirm(Firm f) {
             List<Mail> tmp_lm = null;
@@ -314,6 +387,21 @@ namespace MailBomber
                 CloseConnection();
 
             return tmp_lm;
+        }
+
+        public void BeginWork() {
+            connection = new SQLiteConnection("Data Source=" + db_file + "; Version=3;");
+            connection.Open();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "BEGIN;";
+            com.ExecuteNonQuery();
+        }
+
+        public void EndWork() {
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "COMMIT;";
+            com.ExecuteNonQuery();
+            connection.Dispose();
         }
 
 
