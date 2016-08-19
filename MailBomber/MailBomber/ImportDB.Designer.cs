@@ -212,6 +212,7 @@
             this.MinimumSize = new System.Drawing.Size(574, 361);
             this.Name = "ImportDB";
             this.Text = "ImportDB";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImportDB_FormClosing);
             this.Load += new System.EventHandler(this.ImportDB_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);

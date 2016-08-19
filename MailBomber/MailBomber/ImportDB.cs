@@ -25,6 +25,8 @@ namespace MailBomber
         public delegate void DlgObjSetValLB(string s);
         DlgObjSetValLB DlgSetValLB;
 
+        Task task_add_in_base;
+
         public ImportDB()
         {
             InitializeComponent();
@@ -79,12 +81,9 @@ namespace MailBomber
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            Task task_add_in_base = new Task(add_in_base);
+            task_add_in_base = new Task(add_in_base);
             DBWorker.Instance.BeginWork();
             task_add_in_base.Start();
-
-
         }
 
         private void add_in_base() {
@@ -115,6 +114,13 @@ namespace MailBomber
 
         private void SetValLB(string s) {
             label1.Text = s;
+        }
+
+        private void ImportDB_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (task_add_in_base.Status == TaskStatus.Running) {
+                task_add_in_base.Dispose();
+            }
         }
     }
 }

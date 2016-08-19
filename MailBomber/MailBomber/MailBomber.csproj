@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataInfo.cs" />
+    <Compile Include="DateTask.cs" />
     <Compile Include="DBWorker.cs" />
     <Compile Include="Firm.cs" />
     <Compile Include="FirmMails.cs" />
