@@ -54,8 +54,9 @@ namespace MailBomber
             com.ExecuteNonQuery();
             com.CommandText = "CREATE TABLE firm_mails (id INTEGER PRIMARY KEY AUTOINCREMENT, id_mail INTEGER, id_firm INTEGER);";
             com.ExecuteNonQuery();
+            com.CommandText = "CREATE TABLE tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, id_firm_mails INTEGER, date_to_execute TEXT, is_enable INTEGER);";
+            com.ExecuteNonQuery();
             
-
         }
 
         private void CloseConnection() {
@@ -404,6 +405,56 @@ namespace MailBomber
             connection.Dispose();
         }
 
+        public List<TaskToSend> GetTasksList()
+        {
+            List<TaskToSend> tmp = new List<TaskToSend>();
+            CreateConnection();
+                SQLiteCommand com = connection.CreateCommand();
+                com.CommandText = "SELECT * FROM tasks;";
+                SQLiteDataReader r = com.ExecuteReader();
+                if (r.FieldCount > 0)
+                {
+                    while (r.Read())
+                    {
+                        tmp.Add(new TaskToSend() { id=Int32.Parse(r["id"].ToString()),
+                                                   is_enable = Int32.Parse(r["is_enable"].ToString()),
+                                                   id_firm_mails = Int32.Parse(r["id_firm_mails"].ToString()),
+                                                   date_to_execute = r["date_to_execute"].ToString()
+                        });
+                    }
+                }
+            CloseConnection();
+            return tmp;
+        }
 
+        public void AddTask(TaskToSend tts) {
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "INSERT INTO tasks (id_firm_mails, is_enable, date_to_execute) VALUES ("+tts.id_firm_mails+","+tts.is_enable+",'"+tts.date_to_execute+"');";
+            com.ExecuteNonQuery();
+            CloseConnection();
+        }
+        public void AddTaskWork(TaskToSend tts)
+        {
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "INSERT INTO tasks (id_firm_mails, is_enable, date_to_execute) VALUES (" + tts.id_firm_mails + "," + tts.is_enable + ",'" + tts.date_to_execute + "');";
+            com.ExecuteNonQuery();
+        }
+
+        public void UpdateTasks(TaskToSend tts) {
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "UPDATE TABLE tasks SET id_firm_mails="+tts.id_firm_mails+ ", is_enable="+tts.is_enable+ ", date_to_execute='"+tts.date_to_execute+"' WHERE id=" + tts.id + ";";
+            com.ExecuteNonQuery();
+            CloseConnection();
+        }
+
+        public void DeleteTask(TaskToSend tts) {
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "DELETE FROM tasks WHERE id=" + tts.id + ";";
+            com.ExecuteNonQuery();
+            CloseConnection();
+        }
     }
 }

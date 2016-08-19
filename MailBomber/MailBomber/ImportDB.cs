@@ -87,7 +87,7 @@ namespace MailBomber
 
         }
 
-      private void add_in_base() {
+        private void add_in_base() {
             if (di != null)
             {
                 pb.Invoke(DlgSetMaxPB);
@@ -104,7 +104,6 @@ namespace MailBomber
 
         }
 
-        
         private void SetMaxPB() {
             pb.Maximum = di.mails.Count;
         }
