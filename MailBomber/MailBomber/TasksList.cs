@@ -19,8 +19,10 @@ namespace MailBomber
             LTasks = DBWorker.Instance.GetTasksList();
         }
 
-        public void CreateTask(Firm m, DateTask d) {
+        public void CreateTask(Mail m, DateTask d) {
             // Получение информации о количестве майлов у фирмы
+            
+
 
             // проверка нет ли такого майла в заданиях
 

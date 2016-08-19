@@ -368,6 +368,28 @@ namespace MailBomber
             
          }
 
+        public Firm GetFirmFromMail(Mail m, MailSearch ms) {
+            Firm f = null;
+            CreateConnection();
+                SQLiteCommand com = connection.CreateCommand();
+                switch (ms) {
+                    case MailSearch.ID:
+                    com.CommandText = "SELECT firm.id as f_id, firm.name as f_name FROM firm_mails "+
+                                        "INNER JOIN fims ON firm_mails.id_firm=firm.id "+
+                                        "WHERE firm_mails.id_mail="+m.id+ " LIMIT 1;";
+                    break;
+                    case MailSearch.MAIL:
+                        com.CommandText = "SELECT firm.id as f_id, firm.name as f_name FROM firm_mails " +
+                                          "INNER JOIN fims ON firm_mails.id_firm=firm.id " +
+                                          "INNER JOIN mails ON firm_mails.id_mail=mails.id " +
+                                          "WHERE mails.mail LIKE " + m.mail + " LIMIT 1;";
+                    break;
+                }
+                com.ExecuteNonQuery();
+            CloseConnection();
+            return f;
+        }
+
         public List<Mail> GetMailsFromFirm(Firm f) {
             List<Mail> tmp_lm = null;
 
