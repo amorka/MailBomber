@@ -39,13 +39,14 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.lv_allInfo = new System.Windows.Forms.ListView();
+            this.dgv_all = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_all)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -77,7 +78,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.lv_allInfo);
+            this.tabPage1.Controls.Add(this.dgv_all);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -135,7 +136,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.41553F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88.58447F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
             this.tableLayoutPanel3.Controls.Add(this.button1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.button2, 2, 0);
@@ -170,21 +171,21 @@
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.Location = new System.Drawing.Point(447, 3);
+            this.button2.Location = new System.Drawing.Point(446, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 32);
             this.button2.TabIndex = 2;
             this.button2.Text = "Импортировать";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // lv_allInfo
+            // dgv_all
             // 
-            this.lv_allInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lv_allInfo.Location = new System.Drawing.Point(3, 3);
-            this.lv_allInfo.Name = "lv_allInfo";
-            this.lv_allInfo.Size = new System.Drawing.Size(538, 220);
-            this.lv_allInfo.TabIndex = 0;
-            this.lv_allInfo.UseCompatibleStateImageBehavior = false;
+            this.dgv_all.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_all.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_all.Location = new System.Drawing.Point(3, 3);
+            this.dgv_all.Name = "dgv_all";
+            this.dgv_all.Size = new System.Drawing.Size(538, 220);
+            this.dgv_all.TabIndex = 0;
             // 
             // ImportDB
             // 
@@ -206,6 +207,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_all)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -223,6 +225,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListView lv_allInfo;
+        private System.Windows.Forms.DataGridView dgv_all;
     }
 }

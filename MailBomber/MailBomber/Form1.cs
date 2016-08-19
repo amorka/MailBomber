@@ -47,5 +47,13 @@ namespace MailBomber
             //listBox1.DataSource = ml;
             //listBox1.DisplayMember = "mail";
         }
+
+        private void импортБазыИзtxtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImportDB idb = new ImportDB();
+            if (idb.ShowDialog() == DialogResult.OK) {
+
+            }
+        }
     }
 }

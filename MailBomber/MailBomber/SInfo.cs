@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace MailBomber
 {
-    class FirmMails
+    class SInfo
     {
-        public int id { get; set; }
-        public int id_firm { get; set; }
-        public int id_mail { get; set; } 
+        public string info { get; set; }
     }
 }
