@@ -99,7 +99,10 @@ namespace MailBomber
 
         private void сформироватьЗаданияНаВсюБазуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AutoCreateTasks act = new AutoCreateTasks();
+            if (act.ShowDialog() == DialogResult.OK) {
+                UpdateListTask();
+            }
         }
     }
 }
