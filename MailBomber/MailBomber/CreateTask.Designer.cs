@@ -78,6 +78,7 @@
             this.Controls.Add(this.cb_list_firm);
             this.Name = "CreateTask";
             this.Text = "CreateTask";
+            this.Load += new System.EventHandler(this.CreateTask_Load);
             this.ResumeLayout(false);
 
         }

@@ -31,13 +31,16 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.импортБазыИзtxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.заданияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem});
+            this.файлToolStripMenuItem,
+            this.заданияToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(878, 24);
@@ -58,6 +61,21 @@
             this.импортБазыИзtxtToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.импортБазыИзtxtToolStripMenuItem.Text = "Импорт базы из .txt";
             this.импортБазыИзtxtToolStripMenuItem.Click += new System.EventHandler(this.импортБазыИзtxtToolStripMenuItem_Click);
+            // 
+            // заданияToolStripMenuItem
+            // 
+            this.заданияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem});
+            this.заданияToolStripMenuItem.Name = "заданияToolStripMenuItem";
+            this.заданияToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.заданияToolStripMenuItem.Text = "Задания";
+            // 
+            // создатьЗаданиеНаКонкретныйEmailToolStripMenuItem
+            // 
+            this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem.Name = "создатьЗаданиеНаКонкретныйEmailToolStripMenuItem";
+            this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
+            this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem.Text = "Создать задание на конкретный Email";
+            this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem.Click += new System.EventHandler(this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -81,6 +99,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem импортБазыИзtxtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem создатьЗаданиеНаКонкретныйEmailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem заданияToolStripMenuItem;
     }
 }
 

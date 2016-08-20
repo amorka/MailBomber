@@ -93,7 +93,7 @@ namespace MailBomber
                
                 for (int i = 0; i < di.mails.Count; i++)
                 {
-                        DBWorker.Instance.AddFrirmMailWork(di.firms[i], di.mails[i]);
+                        DBWorker.Instance.AddFrirmMailsWork(di.firms[i], di.mails[i]);
                         pb.Invoke(DlgSetValPB, new object[] { i });
                         label1.Invoke(DlgSetValLB, new object[] { di.mails[i].mail });
                 }

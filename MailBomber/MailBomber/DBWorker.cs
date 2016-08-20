@@ -50,7 +50,7 @@ namespace MailBomber
             SQLiteCommand com = connection.CreateCommand();
             com.CommandText = "CREATE TABLE mails (id INTEGER PRIMARY KEY AUTOINCREMENT, mail TEXT);";
             com.ExecuteNonQuery();
-            com.CommandText = "CREATE TABLE firm (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);";
+            com.CommandText = "CREATE TABLE firms (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);";
             com.ExecuteNonQuery();
             com.CommandText = "CREATE TABLE firm_mails (id INTEGER PRIMARY KEY AUTOINCREMENT, id_mail INTEGER, id_firm INTEGER);";
             com.ExecuteNonQuery();
@@ -310,7 +310,7 @@ namespace MailBomber
             }
             return tmp;
         }
-        private List<Firm> GetFrims()
+        public List<Firm> GetFrims()
         {
             CreateConnection();
             List<Firm> tmp_firms = null;

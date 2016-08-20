@@ -12,6 +12,7 @@ namespace MailBomber
 {
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
@@ -55,5 +56,19 @@ namespace MailBomber
 
             }
         }
+
+        private void создатьЗаданиеНаКонкретныйEmailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateTask ct = new CreateTask();
+            ct.parentForm = this;
+            ct.Show();
+        }
+
+
+        public void UpdateListTask() {
+
+            MessageBox.Show("Обновление списка активных заданий");
+        }
+
     }
 }
