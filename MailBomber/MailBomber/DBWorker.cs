@@ -330,7 +330,7 @@ namespace MailBomber
             return tmp_firms;
         }
 
-        public void AddFrirmMail(Firm f, Mail m) {
+        public void AddFrirmMails(Firm f, Mail m) {
             
             // add firm
             Firm test_f = GetFirm(f, FirmSearch.NAME);
@@ -349,7 +349,7 @@ namespace MailBomber
                 CloseConnection();
             }
         }
-        public void AddFrirmMailWork(Firm f, Mail m)
+        public void AddFrirmMailsWork(Firm f, Mail m)
         {
             // add firm
                 Firm test_f = GetFirmWork(f, FirmSearch.NAME);
@@ -368,21 +368,77 @@ namespace MailBomber
             
          }
 
+        public FirmMails GetFirmMailsObj(Mail m) {
+            FirmMails fm = null;
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT * " +
+                              "FROM firm_mails " +
+                              "WHERE firm_mails.id_mail=" + m.id + ";";
+            SQLiteDataReader r = com.ExecuteReader();
+            while (r.Read()) {
+                fm = new FirmMails() {id = Int32.Parse(r["id"].ToString()),
+                                     id_firm = Int32.Parse(r["id_firm"].ToString()),
+                                     id_mail=Int32.Parse(r["id_mail"].ToString())
+                };
+            }
+            CloseConnection();
+            return fm;
+        }
+        public FirmMails GetFirmMailsObj(Firm f)
+        {
+            FirmMails fm = null;
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT * " +
+                              "FROM firm_mails " +
+                              "WHERE firm_mails.id_firm=" + f.id + ";";
+            SQLiteDataReader r = com.ExecuteReader();
+            while (r.Read())
+            {
+                fm = new FirmMails()
+                {
+                    id = Int32.Parse(r["id"].ToString()),
+                    id_firm = Int32.Parse(r["id_firm"].ToString()),
+                    id_mail = Int32.Parse(r["id_mail"].ToString())
+                };
+            }
+            CloseConnection();
+            return fm;
+        }
+
         public Firm GetFirmFromMail(Mail m, MailSearch ms) {
             Firm f = null;
             CreateConnection();
                 SQLiteCommand com = connection.CreateCommand();
+                SQLiteDataReader r;
                 switch (ms) {
                     case MailSearch.ID:
-                    com.CommandText = "SELECT firm.id as f_id, firm.name as f_name FROM firm_mails "+
-                                        "INNER JOIN fims ON firm_mails.id_firm=firm.id "+
-                                        "WHERE firm_mails.id_mail="+m.id+ " LIMIT 1;";
+                        com.CommandText =   "SELECT firm.id as f_id, firm.name as f_name FROM firm_mails "+
+                                            "INNER JOIN fims ON firm_mails.id_firm=firm.id "+
+                                            "WHERE firm_mails.id_mail="+m.id+ " LIMIT 1;";
+                        r = com.ExecuteReader();
+                        if (r.FieldCount > 0)
+                        {
+                            while (r.Read())
+                            {
+                                f = new Firm() { id = Int32.Parse(r["f_id"].ToString()), name = r["f_name"].ToString() };
+                            }
+                        }
                     break;
                     case MailSearch.MAIL:
                         com.CommandText = "SELECT firm.id as f_id, firm.name as f_name FROM firm_mails " +
                                           "INNER JOIN fims ON firm_mails.id_firm=firm.id " +
                                           "INNER JOIN mails ON firm_mails.id_mail=mails.id " +
                                           "WHERE mails.mail LIKE " + m.mail + " LIMIT 1;";
+                        r = com.ExecuteReader();
+                        if (r.FieldCount > 0)
+                        {
+                            while (r.Read())
+                            {
+                                f = new Firm() { id = Int32.Parse(r["f_id"].ToString()), name = r["f_name"].ToString() };
+                            }
+                        }
                     break;
                 }
                 com.ExecuteNonQuery();
@@ -477,6 +533,28 @@ namespace MailBomber
             com.CommandText = "DELETE FROM tasks WHERE id=" + tts.id + ";";
             com.ExecuteNonQuery();
             CloseConnection();
+        }
+
+        public List<TaskToSend> IsExistTask(Mail m) {
+            List<TaskToSend> tmp = null ;
+            CreateConnection();
+                SQLiteCommand com = connection.CreateCommand();
+                com.CommandText = "SELECT tasks.id as t_id, tasks.is_enable as t_is_enable, tasks.date_to_execute as t_date_to_execute, tasks.id_firm_mails as t_id_firm_mails " +
+                                  "FROM tasks " +
+                                  "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id "+
+                                  "WHERE firm_mails.id_mail="+m.id+";";
+                SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0) tmp = new List<TaskToSend>();
+            while (r.Read()) {
+                tmp.Add(new TaskToSend() { id= Int32.Parse(r["t_id"].ToString()),
+                                           is_enable= Int32.Parse(r["t_is_enable"].ToString()),
+                                           date_to_execute=r["t_date_to_execute"].ToString(),
+                                           id_firm_mails= Int32.Parse(r["t_id_firm_mails"].ToString())
+                });
+            }
+            CloseConnection();
+
+            return tmp;
         }
     }
 }
