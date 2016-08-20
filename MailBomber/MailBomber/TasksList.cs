@@ -9,15 +9,35 @@ namespace MailBomber
 {
     class TasksList
     {
-        List<TaskToSend> LTasks;
+        List<TaskToSend> _LTasks;
+        public List<TaskToSend> LTasks {
+            get {
+                UpdateTasksList();
+                return _LTasks;
+            }
+        }
+
+        public List<TaskToSend> LActiveTasks {
+            get {
+                return DBWorker.Instance.GetActiveTasksList();
+            }
+        }
+
+        public List<TaskToSend> LExecutedsTasks
+        {
+            get
+            {
+                return DBWorker.Instance.GetExecutedsTasksList();
+            }
+        }
 
         public TasksList() {
-            LTasks = new List<TaskToSend>();
+            _LTasks = new List<TaskToSend>();
             UpdateTasksList();
         }
 
         private void UpdateTasksList() {
-            LTasks = DBWorker.Instance.GetTasksList();
+            _LTasks = DBWorker.Instance.GetTasksList();
         }
 
         public void CreateTask(Mail m, DateTask d) {
@@ -39,13 +59,6 @@ namespace MailBomber
                     });
                 }
             }
-            // проверка нет ли такого майла в заданиях
-
-            // проверка нет ли фирмы такой в заданиях
-
-            // если есть то активно или нет
-
-            // если нету то добавляем с датой больше последнего
         }
     }
 }

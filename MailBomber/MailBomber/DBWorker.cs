@@ -505,6 +505,54 @@ namespace MailBomber
             return tmp;
         }
 
+        public List<TaskToSend> GetActiveTasksList()
+        {
+            List<TaskToSend> tmp = new List<TaskToSend>();
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT * FROM tasks WHERE is_enable=1;";
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0)
+            {
+                while (r.Read())
+                {
+                    tmp.Add(new TaskToSend()
+                    {
+                        id = Int32.Parse(r["id"].ToString()),
+                        is_enable = Int32.Parse(r["is_enable"].ToString()),
+                        id_firm_mails = Int32.Parse(r["id_firm_mails"].ToString()),
+                        date_to_execute = r["date_to_execute"].ToString()
+                    });
+                }
+            }
+            CloseConnection();
+            return tmp;
+        }
+
+        public List<TaskToSend> GetExecutedsTasksList()
+        {
+            List<TaskToSend> tmp = new List<TaskToSend>();
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT * FROM tasks WHERE is_enable=0;";
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0)
+            {
+                while (r.Read())
+                {
+                    tmp.Add(new TaskToSend()
+                    {
+                        id = Int32.Parse(r["id"].ToString()),
+                        is_enable = Int32.Parse(r["is_enable"].ToString()),
+                        id_firm_mails = Int32.Parse(r["id_firm_mails"].ToString()),
+                        date_to_execute = r["date_to_execute"].ToString()
+                    });
+                }
+            }
+            CloseConnection();
+            return tmp;
+        }
+
         public void AddTask(TaskToSend tts) {
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();

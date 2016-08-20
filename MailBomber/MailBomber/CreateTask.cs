@@ -24,6 +24,10 @@ namespace MailBomber
 
         private void btn_CreateTask_Click(object sender, EventArgs e)
         {
+            if (dtp_Task.Value.Year < DateTime.Now.Year || dtp_Task.Value.Month < DateTime.Now.Month || dtp_Task.Value.Day < DateTime.Now.Day) {
+                MessageBox.Show("Нельзя указать дату задним числом!");
+                return;
+            }
             Firm f = new Firm() {id =(cb_list_firm.SelectedItem as Firm).id, name= (cb_list_firm.SelectedItem as Firm).name };
             Mail m = new Mail() { id=(lb_list_mails.SelectedItem as Mail).id, mail=(lb_list_mails.SelectedItem as Mail).mail };
             FirmMails fm = DBWorker.Instance.GetFirmMailsObj(m);
@@ -45,8 +49,9 @@ namespace MailBomber
 
             cb_list_firm.DataSource = DBWorker.Instance.GetFrims();
             cb_list_firm.DisplayMember = "name";
-            cb_list_firm.SelectedIndex = 0;
             cb_list_firm.SelectedIndexChanged += Cb_list_firm_SelectedIndexChanged;
+            cb_list_firm.SelectedIndex = 0;
+            Cb_list_firm_SelectedIndexChanged(null, null);
         }
 
         private void Cb_list_firm_SelectedIndexChanged(object sender, EventArgs e)
