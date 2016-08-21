@@ -176,7 +176,7 @@ namespace MailBomber
             }
             return tmp;
         }
-        private List<Mail> GetMails() {
+        public List<Mail> GetMails() {
             CreateConnection();
             List<Mail> tmp_mails = null;
             SQLiteCommand com = connection.CreateCommand();
@@ -194,7 +194,28 @@ namespace MailBomber
 
             return tmp_mails;
         }
+        public List<Mail> GetMailsWhereDontHaveTasks()
+        {
+            CreateConnection();
+            List<Mail> tmp_mails = null;
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT mails.id as m_id, mails.mail as m_mail FROM mails " +
+                              "INNER JOIN firm_mails ON mails.id=firm_mails.id_mail "+
+                              "LEFT JOIN tasks ON firm_mails.id=tasks.id_firm_mails "+
+                              "WHERE tasks.id_firm_mails IS NULL;";
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0)
+            {
+                tmp_mails = new List<Mail>();
+                while (r.Read())
+                {
+                    tmp_mails.Add(new Mail() { id = Int32.Parse(r["id"].ToString()), mail = r["mail"].ToString() });
+                }
+            }
+            CloseConnection();
 
+            return tmp_mails;
+        }
 
         private void AddFirm(Firm f) {
             CreateConnection();

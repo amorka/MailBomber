@@ -43,7 +43,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btn_createTasks = new System.Windows.Forms.Button();
             this.tb_countMailsinBase = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb_countActiveAndExecutedTasks = new System.Windows.Forms.TextBox();
             this.tb_countNewTasks = new System.Windows.Forms.TextBox();
             this.tb_countDayToExecuted = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -61,6 +61,7 @@
             this.tb_mail_to_day.TabIndex = 0;
             this.tb_mail_to_day.Text = "300";
             this.tb_mail_to_day.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_mail_to_day.TextChanged += new System.EventHandler(this.tb_mail_to_day_TextChanged);
             // 
             // label1
             // 
@@ -157,7 +158,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.tb_countActiveAndExecutedTasks);
             this.groupBox2.Controls.Add(this.tb_countMailsinBase);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
@@ -199,6 +200,7 @@
             this.btn_createTasks.TabIndex = 11;
             this.btn_createTasks.Text = "Сформировать";
             this.btn_createTasks.UseVisualStyleBackColor = true;
+            this.btn_createTasks.Click += new System.EventHandler(this.btn_createTasks_Click);
             // 
             // tb_countMailsinBase
             // 
@@ -210,15 +212,15 @@
             this.tb_countMailsinBase.Text = "0";
             this.tb_countMailsinBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox2
+            // tb_countActiveAndExecutedTasks
             // 
-            this.textBox2.Location = new System.Drawing.Point(153, 52);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(63, 20);
-            this.textBox2.TabIndex = 9;
-            this.textBox2.Text = "0/0";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_countActiveAndExecutedTasks.Location = new System.Drawing.Point(136, 52);
+            this.tb_countActiveAndExecutedTasks.Name = "tb_countActiveAndExecutedTasks";
+            this.tb_countActiveAndExecutedTasks.ReadOnly = true;
+            this.tb_countActiveAndExecutedTasks.Size = new System.Drawing.Size(97, 20);
+            this.tb_countActiveAndExecutedTasks.TabIndex = 9;
+            this.tb_countActiveAndExecutedTasks.Text = "0/0";
+            this.tb_countActiveAndExecutedTasks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb_countNewTasks
             // 
@@ -269,6 +271,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "AutoCreateTasks";
             this.Text = "AutoCreateTasks";
+            this.Load += new System.EventHandler(this.AutoCreateTasks_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -292,7 +295,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tb_countActiveAndExecutedTasks;
         private System.Windows.Forms.TextBox tb_countMailsinBase;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox tb_countDayToExecuted;

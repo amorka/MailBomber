@@ -57,6 +57,7 @@ namespace MailBomber
                                                 is_enable = 1,
                                                 id_firm_mails= tmp.id
                     });
+                    UpdateTasksList();
                 }
             }
         }
