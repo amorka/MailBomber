@@ -19,9 +19,11 @@ namespace MailBomber
             Date = yy.ToString() + "-" + mm.ToString() + "-" + dd.ToString();
         }
 
+        public DateTask() { }
+
         public DateTask Parse(string s) {
             this.Date = s;
-            Regex reg = new Regex(@"^([0-9]{4,});([0-9]{1,2});([0-9]{1,2})$", RegexOptions.IgnoreCase);
+            Regex reg = new Regex(@"^([0-9]{4,})-([0-9]{1,2})-([0-9]{1,2})$", RegexOptions.IgnoreCase);
             Match match=reg.Match(s);
             Group g_yy = match.Groups[1];
             Group g_mm = match.Groups[2];
