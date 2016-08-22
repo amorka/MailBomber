@@ -752,7 +752,7 @@ namespace MailBomber
                     date_to_execute = r["t_date_to_execute"].ToString(),
                     id_firm_mails = Int32.Parse(r["t_id_firm_mails"].ToString()),
                     is_enable = Int32.Parse(r["t_is_enable"].ToString()),
-                };
+                }; 
             }
             return tmp;
         }
