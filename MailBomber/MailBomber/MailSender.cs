@@ -36,7 +36,7 @@ namespace MailBomber
         public void StartSender() { taskSender.Start(); }
 
         private void MethodForSend() {
-
+            // сделать проверку доступности интернета
             List<TaskToSend> ttsList = DBWorker.Instance.GetActiveTasksList(ms.count_mails_to_send_in_day);
 
             for (int i = 0; i < ttsList.Count; i++) {
