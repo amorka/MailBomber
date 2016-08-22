@@ -743,7 +743,7 @@ namespace MailBomber
                               "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id " +
                               "WHERE firm_mails.id_firm=" + f.id + " ORDER BY tasks.date_to_execute DESC;";
             SQLiteDataReader r = com.ExecuteReader();
-            if (r.FieldCount > 0)
+            if (r.StepCount > 0)
             {
                 r.Read();
                 tmp = new TaskToSend()

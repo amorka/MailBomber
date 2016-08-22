@@ -37,8 +37,8 @@ namespace MailBomber
 
         public string CalcDate() {
 
-            DateTime dt_prev = new DateTime(Year, Month, Day);
-            dt_prev.AddDays(1);
+            DateTime dt_prev = DateTime.Parse(Date); //new DateTime(Year, Month, Day,0,0,0,0);
+            dt_prev=dt_prev.AddDays(1);
             Year = dt_prev.Year;
             Month = dt_prev.Month;
             Day = dt_prev.Day;

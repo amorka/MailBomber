@@ -84,6 +84,7 @@
     <Compile Include="DataInfo.cs" />
     <Compile Include="DateTask.cs" />
     <Compile Include="DBWorker.cs" />
+    <Compile Include="Debug.cs" />
     <Compile Include="Firm.cs" />
     <Compile Include="FirmMails.cs" />
     <Compile Include="Form1.cs">

@@ -61,7 +61,7 @@ namespace MailBomber
                             DBWorker.Instance.AddTaskWork(new TaskToSend()
                             {
                                 id_firm_mails = DBWorker.Instance.GetFirmMailsObjWork(f).id,
-                                date_to_execute = new DateTask(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).Date,
+                                date_to_execute = new DateTask(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).CalcDate(),
                                 is_enable = 1
                             });
                            // actForm.Invoke(Delegate.CreateDelegate(typeof(void),actForm, "PBActionAddTasks"));
