@@ -613,6 +613,30 @@ namespace MailBomber
             return tmp;
         }
 
+        public List<TaskToSend> GetActiveTasksList(int limit)
+        {
+            List<TaskToSend> tmp = new List<TaskToSend>();
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT * FROM tasks WHERE is_enable=1 ORDER BY tasks.date_to_execute ASC LIMIT "+limit+";";
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0)
+            {
+                while (r.Read())
+                {
+                    tmp.Add(new TaskToSend()
+                    {
+                        id = Int32.Parse(r["id"].ToString()),
+                        is_enable = Int32.Parse(r["is_enable"].ToString()),
+                        id_firm_mails = Int32.Parse(r["id_firm_mails"].ToString()),
+                        date_to_execute = r["date_to_execute"].ToString()
+                    });
+                }
+            }
+            CloseConnection();
+            return tmp;
+        }
+
         public List<TaskToSend> GetExecutedsTasksList()
         {
             List<TaskToSend> tmp = new List<TaskToSend>();
@@ -764,7 +788,7 @@ namespace MailBomber
             return tmp;
         }
 
-        internal MailSettings GetMailSettings()
+        public MailSettings GetMailSettings()
         {
             MailSettings ms=null;
             CreateConnection();
@@ -788,6 +812,34 @@ namespace MailBomber
             CloseConnection();
             return ms;
         }
+
+        public Mail GetMailFromTask(TaskToSend tts) {
+            Mail m = null;
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT mails.id as m_id, mails.mail as m_mail"+
+                              "FROM tasks "+
+                              "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id "+
+                              "INNER JOIN mails ON firm_mails.id_mail=mails.id "+
+                              "WHERE tasks.id ="+tts.id+";";
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.HasRows)
+            {
+                while (r.Read())
+                {
+                    m = new Mail()
+                    {
+                        id = Int32.Parse(r["m_id"].ToString()),
+                        mail = r["m_mail"].ToString()
+                    };
+                }
+            }
+
+            CloseConnection();
+            return m;
+        }
+
+
 
         //public TaskToSend GetLastTaskFromFirm(Mail m)
         //{
