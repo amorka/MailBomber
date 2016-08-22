@@ -90,7 +90,9 @@ namespace MailBomber
             if (di != null)
             {
                 pb.Invoke(DlgSetMaxPB);
-               
+
+                Console.WriteLine(String.Format("Майлов считано из файла {0}", di.mails.Count));
+
                 for (int i = 0; i < di.mails.Count; i++)
                 {
                         DBWorker.Instance.AddFrirmMailsWork(di.firms[i], di.mails[i]);

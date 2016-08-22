@@ -56,7 +56,9 @@ namespace MailBomber
             com.ExecuteNonQuery();
             com.CommandText = "CREATE TABLE tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, id_firm_mails INTEGER, date_to_execute TEXT, is_enable INTEGER);";
             com.ExecuteNonQuery();
-            
+            com.CommandText = "CREATE TABLE mail_settings (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, word_to_replease TEXT, count_mails_to_send_in_day INTEGER, delay_to_send INTEGER);";
+            com.ExecuteNonQuery();
+
         }
 
         private void CloseConnection() {
@@ -374,18 +376,23 @@ namespace MailBomber
         {
             // add firm
                 Firm test_f = GetFirmWork(f, FirmSearch.NAME);
+
                 if (test_f == null)
                 {
                     AddFirmWork(f);
                 }
                 Mail test_m = GetMailWork(m, MailSearch.MAIL);
-                if (test_m == null)
-                {
-                    AddMailWork(m);
-                    SQLiteCommand com = connection.CreateCommand();
-                    com.CommandText = "INSERT INTO firm_mails (id_firm, id_mail) VALUES (" + GetFirmWork(f, FirmSearch.NAME).id + "," + GetMailWork(m, MailSearch.MAIL).id + ");";
-                    com.ExecuteNonQuery();
-                }
+            if (test_m == null)
+            {
+                
+                AddMailWork(m);
+                SQLiteCommand com = connection.CreateCommand();
+                com.CommandText = "INSERT INTO firm_mails (id_firm, id_mail) VALUES (" + GetFirmWork(f, FirmSearch.NAME).id + "," + GetMailWork(m, MailSearch.MAIL).id + ");";
+                com.ExecuteNonQuery();
+            }
+            else {
+                Console.WriteLine(String.Format("- - Не был добавлен майл - {0} - Фирма - {1} -", m.mail, f.name));
+            }
             
          }
 
@@ -693,10 +700,10 @@ namespace MailBomber
             SQLiteCommand com = connection.CreateCommand();
             com.CommandText = "SELECT tasks.id as t_id, tasks.is_enable as t_is_enable, tasks.date_to_execute as t_date_to_execute, tasks.id_firm_mails as t_id_firm_mails " +
                               "FROM tasks " +
-                              "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id " +
+                              "LEFT JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id " +
                               "WHERE firm_mails.id_mail=" + m.id + ";";
             SQLiteDataReader r = com.ExecuteReader();
-            if (r.FieldCount>0)
+            if (r.HasRows)
             {
                 while (r.Read())
                 {
@@ -755,6 +762,31 @@ namespace MailBomber
                 }; 
             }
             return tmp;
+        }
+
+        internal MailSettings GetMailSettings()
+        {
+            MailSettings ms=null;
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT * FROM mail_settings LIMIT 1;";
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0)
+            {
+                while (r.Read())
+                {
+                    ms = new MailSettings() {
+                        id = Int32.Parse(r["id"].ToString()),
+                        body = r["body"].ToString(),
+                        title = r["title"].ToString(),
+                        word_to_replease = r["word_to_replease"].ToString(),
+                        delay_to_send = Int32.Parse(r["delay_to_send"].ToString()),
+                        count_mails_to_send_in_day = Int32.Parse(r["count_mails_to_send_in_day"].ToString()),
+                    };
+                }
+            }
+            CloseConnection();
+            return ms;
         }
 
         //public TaskToSend GetLastTaskFromFirm(Mail m)

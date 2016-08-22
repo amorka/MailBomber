@@ -42,7 +42,6 @@ namespace MailBomber
             picb_internet.BackColor = Color.Red;
             TestInternet();
 
-            Debug.ShowWindow();
         }
 
         private void TestInternet()

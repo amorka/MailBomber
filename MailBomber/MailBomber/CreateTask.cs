@@ -52,6 +52,7 @@ namespace MailBomber
             cb_list_firm.SelectedIndexChanged += Cb_list_firm_SelectedIndexChanged;
             cb_list_firm.SelectedIndex = 0;
             Cb_list_firm_SelectedIndexChanged(null, null);
+            
         }
 
         private void Cb_list_firm_SelectedIndexChanged(object sender, EventArgs e)
