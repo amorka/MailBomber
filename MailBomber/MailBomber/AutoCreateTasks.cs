@@ -13,6 +13,9 @@ namespace MailBomber
     public partial class AutoCreateTasks : Form
     {
 
+        public delegate void DPBActionAddTasks();
+        public event DPBActionAddTasks PBActionAddTasks;
+
         public AutoCreateTasks()
         {
             InitializeComponent();
@@ -20,27 +23,11 @@ namespace MailBomber
 
         private void btn_createTasks_Click(object sender, EventArgs e)
         {
-
-            List<Mail> mlDHT = DBWorker.Instance.GetMailsWhereDontHaveTasks();
             TasksList tl = new TasksList();
+            tl.actForm = this;
             // Добавить Методы быстрого добавления заданий
-
+            tl.CreateTasks();
             // итерация 301 раз
-            Firm f = DBWorker.Instance.GetFirmFromMail(new Mail() { id = 5 }, MailSearch.ID);
-
-
-            DateTask dtLast = new DateTask();
-
-            // Дата последнего задания для фирмы 
-            dtLast.Parse(DBWorker.Instance.GetLastTaskFromFirm(f).date_to_execute);
-
-            for (int i = 0; i < (Int32.Parse(tb_mail_to_day.Text) + 1); i++) {
-
-            }
-
-            // Проверка нет ли активного задания для доп майла фармы на установленную дату 
-            
-            //List<Firm> fl = DBWorker.Instance.GetFirmFromMail()
 
             DialogResult = DialogResult.OK;
             this.Close();
@@ -51,6 +38,17 @@ namespace MailBomber
             tb_countMailsinBase.Text = DBWorker.Instance.GetMails().Count.ToString();
             tb_countActiveAndExecutedTasks.Text = DBWorker.Instance.GetActiveTasksList().Count.ToString() + "/" + DBWorker.Instance.GetExecutedsTasksList().Count.ToString();
             CalcInfo();
+            pb_autoCreateTasks.Step = 1;
+            pb_autoCreateTasks.Value = 0;
+            pb_autoCreateTasks.Minimum = 0;
+            pb_autoCreateTasks.Maximum=DBWorker.Instance.GetMailsWhereDontHaveTasks().Count;
+            PBActionAddTasks += AutoCreateTasks_PBActionAddTasks;
+
+        }
+
+        private void AutoCreateTasks_PBActionAddTasks()
+        {
+            pb_autoCreateTasks.Value++;
         }
 
         private void CalcInfo() {

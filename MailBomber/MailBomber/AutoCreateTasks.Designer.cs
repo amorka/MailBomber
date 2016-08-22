@@ -35,19 +35,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cb_rewriteTasks = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tb_delayToSend = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tb_countActiveAndExecutedTasks = new System.Windows.Forms.TextBox();
+            this.tb_countMailsinBase = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tb_countDayToExecuted = new System.Windows.Forms.TextBox();
+            this.tb_countNewTasks = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btn_createTasks = new System.Windows.Forms.Button();
-            this.tb_countMailsinBase = new System.Windows.Forms.TextBox();
-            this.tb_countActiveAndExecutedTasks = new System.Windows.Forms.TextBox();
-            this.tb_countNewTasks = new System.Windows.Forms.TextBox();
-            this.tb_countDayToExecuted = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tb_delayToSend = new System.Windows.Forms.TextBox();
+            this.pb_autoCreateTasks = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -129,6 +130,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметры";
             // 
+            // tb_delayToSend
+            // 
+            this.tb_delayToSend.Location = new System.Drawing.Point(153, 61);
+            this.tb_delayToSend.Name = "tb_delayToSend";
+            this.tb_delayToSend.Size = new System.Drawing.Size(75, 20);
+            this.tb_delayToSend.TabIndex = 7;
+            this.tb_delayToSend.Text = "5";
+            this.tb_delayToSend.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 64);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(135, 13);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Задержда отправки (сек)";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -169,6 +188,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Сводка";
             // 
+            // tb_countActiveAndExecutedTasks
+            // 
+            this.tb_countActiveAndExecutedTasks.Location = new System.Drawing.Point(136, 52);
+            this.tb_countActiveAndExecutedTasks.Name = "tb_countActiveAndExecutedTasks";
+            this.tb_countActiveAndExecutedTasks.ReadOnly = true;
+            this.tb_countActiveAndExecutedTasks.Size = new System.Drawing.Size(97, 20);
+            this.tb_countActiveAndExecutedTasks.TabIndex = 9;
+            this.tb_countActiveAndExecutedTasks.Text = "0/0";
+            this.tb_countActiveAndExecutedTasks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tb_countMailsinBase
+            // 
+            this.tb_countMailsinBase.Location = new System.Drawing.Point(153, 23);
+            this.tb_countMailsinBase.Name = "tb_countMailsinBase";
+            this.tb_countMailsinBase.ReadOnly = true;
+            this.tb_countMailsinBase.Size = new System.Drawing.Size(63, 20);
+            this.tb_countMailsinBase.TabIndex = 8;
+            this.tb_countMailsinBase.Text = "0";
+            this.tb_countMailsinBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tb_countDayToExecuted);
@@ -181,6 +220,26 @@
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Прогноз";
+            // 
+            // tb_countDayToExecuted
+            // 
+            this.tb_countDayToExecuted.Location = new System.Drawing.Point(84, 108);
+            this.tb_countDayToExecuted.Name = "tb_countDayToExecuted";
+            this.tb_countDayToExecuted.ReadOnly = true;
+            this.tb_countDayToExecuted.Size = new System.Drawing.Size(63, 20);
+            this.tb_countDayToExecuted.TabIndex = 11;
+            this.tb_countDayToExecuted.Text = "0";
+            this.tb_countDayToExecuted.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tb_countNewTasks
+            // 
+            this.tb_countNewTasks.Location = new System.Drawing.Point(84, 51);
+            this.tb_countNewTasks.Name = "tb_countNewTasks";
+            this.tb_countNewTasks.ReadOnly = true;
+            this.tb_countNewTasks.Size = new System.Drawing.Size(63, 20);
+            this.tb_countNewTasks.TabIndex = 10;
+            this.tb_countNewTasks.Text = "0";
+            this.tb_countNewTasks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
             // 
@@ -202,69 +261,19 @@
             this.btn_createTasks.UseVisualStyleBackColor = true;
             this.btn_createTasks.Click += new System.EventHandler(this.btn_createTasks_Click);
             // 
-            // tb_countMailsinBase
+            // pb_autoCreateTasks
             // 
-            this.tb_countMailsinBase.Location = new System.Drawing.Point(153, 23);
-            this.tb_countMailsinBase.Name = "tb_countMailsinBase";
-            this.tb_countMailsinBase.ReadOnly = true;
-            this.tb_countMailsinBase.Size = new System.Drawing.Size(63, 20);
-            this.tb_countMailsinBase.TabIndex = 8;
-            this.tb_countMailsinBase.Text = "0";
-            this.tb_countMailsinBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb_countActiveAndExecutedTasks
-            // 
-            this.tb_countActiveAndExecutedTasks.Location = new System.Drawing.Point(136, 52);
-            this.tb_countActiveAndExecutedTasks.Name = "tb_countActiveAndExecutedTasks";
-            this.tb_countActiveAndExecutedTasks.ReadOnly = true;
-            this.tb_countActiveAndExecutedTasks.Size = new System.Drawing.Size(97, 20);
-            this.tb_countActiveAndExecutedTasks.TabIndex = 9;
-            this.tb_countActiveAndExecutedTasks.Text = "0/0";
-            this.tb_countActiveAndExecutedTasks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb_countNewTasks
-            // 
-            this.tb_countNewTasks.Location = new System.Drawing.Point(84, 51);
-            this.tb_countNewTasks.Name = "tb_countNewTasks";
-            this.tb_countNewTasks.ReadOnly = true;
-            this.tb_countNewTasks.Size = new System.Drawing.Size(63, 20);
-            this.tb_countNewTasks.TabIndex = 10;
-            this.tb_countNewTasks.Text = "0";
-            this.tb_countNewTasks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb_countDayToExecuted
-            // 
-            this.tb_countDayToExecuted.Location = new System.Drawing.Point(84, 108);
-            this.tb_countDayToExecuted.Name = "tb_countDayToExecuted";
-            this.tb_countDayToExecuted.ReadOnly = true;
-            this.tb_countDayToExecuted.Size = new System.Drawing.Size(63, 20);
-            this.tb_countDayToExecuted.TabIndex = 11;
-            this.tb_countDayToExecuted.Text = "0";
-            this.tb_countDayToExecuted.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 64);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(135, 13);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Задержда отправки (сек)";
-            // 
-            // tb_delayToSend
-            // 
-            this.tb_delayToSend.Location = new System.Drawing.Point(153, 61);
-            this.tb_delayToSend.Name = "tb_delayToSend";
-            this.tb_delayToSend.Size = new System.Drawing.Size(75, 20);
-            this.tb_delayToSend.TabIndex = 7;
-            this.tb_delayToSend.Text = "5";
-            this.tb_delayToSend.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.pb_autoCreateTasks.Location = new System.Drawing.Point(12, 492);
+            this.pb_autoCreateTasks.Name = "pb_autoCreateTasks";
+            this.pb_autoCreateTasks.Size = new System.Drawing.Size(240, 23);
+            this.pb_autoCreateTasks.TabIndex = 12;
             // 
             // AutoCreateTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 498);
+            this.ClientSize = new System.Drawing.Size(264, 523);
+            this.Controls.Add(this.pb_autoCreateTasks);
             this.Controls.Add(this.btn_createTasks);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -304,5 +313,6 @@
         private System.Windows.Forms.Button btn_createTasks;
         private System.Windows.Forms.TextBox tb_delayToSend;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ProgressBar pb_autoCreateTasks;
     }
 }

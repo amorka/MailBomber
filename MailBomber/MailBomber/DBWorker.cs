@@ -427,6 +427,44 @@ namespace MailBomber
             CloseConnection();
             return fm;
         }
+        public FirmMails GetFirmMailsObjWork(Mail m)
+        {
+            FirmMails fm = null;
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT * " +
+                              "FROM firm_mails " +
+                              "WHERE firm_mails.id_mail=" + m.id + ";";
+            SQLiteDataReader r = com.ExecuteReader();
+            while (r.Read())
+            {
+                fm = new FirmMails()
+                {
+                    id = Int32.Parse(r["id"].ToString()),
+                    id_firm = Int32.Parse(r["id_firm"].ToString()),
+                    id_mail = Int32.Parse(r["id_mail"].ToString())
+                };
+            }
+            return fm;
+        }
+        public FirmMails GetFirmMailsObjWork(Firm f)
+        {
+            FirmMails fm = null;
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT * " +
+                              "FROM firm_mails " +
+                              "WHERE firm_mails.id_firm=" + f.id + ";";
+            SQLiteDataReader r = com.ExecuteReader();
+            while (r.Read())
+            {
+                fm = new FirmMails()
+                {
+                    id = Int32.Parse(r["id"].ToString()),
+                    id_firm = Int32.Parse(r["id_firm"].ToString()),
+                    id_mail = Int32.Parse(r["id_mail"].ToString())
+                };
+            }
+            return fm;
+        }
 
         public Firm GetFirmFromMail(Mail m, MailSearch ms) {
             Firm f = null;
@@ -485,6 +523,25 @@ namespace MailBomber
             }
                 CloseConnection();
 
+            return tmp_lm;
+        }
+        public List<Mail> GetMailsFromFirmWork(Firm f)
+        {
+            List<Mail> tmp_lm = null;
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT mails.id as m_id, mails.mail as m_mail FROM firms " +
+                              "INNER JOIN firm_mails ON firms.id=firm_mails.id_firm " +
+                              "INNER JOIN mails ON firm_mails.id_mail=mails.id " +
+                              "WHERE firms.name LIKE '" + f.name + "';";
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0)
+            {
+                tmp_lm = new List<Mail>();
+                while (r.Read())
+                {
+                    tmp_lm.Add(new Mail() { id = Int32.Parse(r["m_id"].ToString()), mail = r["m_mail"].ToString() });
+                }
+            }
             return tmp_lm;
         }
 
@@ -612,37 +669,92 @@ namespace MailBomber
                                   "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id "+
                                   "WHERE firm_mails.id_mail="+m.id+";";
                 SQLiteDataReader r = com.ExecuteReader();
-            if (r.FieldCount > 0) tmp = new List<TaskToSend>();
-            while (r.Read()) {
-                tmp.Add(new TaskToSend() { id= Int32.Parse(r["t_id"].ToString()),
-                                           is_enable= Int32.Parse(r["t_is_enable"].ToString()),
-                                           date_to_execute=r["t_date_to_execute"].ToString(),
-                                           id_firm_mails= Int32.Parse(r["t_id_firm_mails"].ToString())
-                });
+            if (r.FieldCount > 0)
+            {
+                tmp = new List<TaskToSend>();
+                while (r.Read())
+                {
+                    tmp.Add(new TaskToSend()
+                    {
+                        id = Int32.Parse(r["t_id"].ToString()),
+                        is_enable = Int32.Parse(r["t_is_enable"].ToString()),
+                        date_to_execute = r["t_date_to_execute"].ToString(),
+                        id_firm_mails = Int32.Parse(r["t_id_firm_mails"].ToString())
+                    });
+                }
             }
             CloseConnection();
 
             return tmp;
         }
+        public List<TaskToSend> IsExistTaskWork(Mail m)
+        {
+            List<TaskToSend> tmp = null;
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT tasks.id as t_id, tasks.is_enable as t_is_enable, tasks.date_to_execute as t_date_to_execute, tasks.id_firm_mails as t_id_firm_mails " +
+                              "FROM tasks " +
+                              "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id " +
+                              "WHERE firm_mails.id_mail=" + m.id + ";";
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount>0)
+            {
+                while (r.Read())
+                {
+                    if(tmp==null) tmp = new List<TaskToSend>();
+                    tmp.Add(new TaskToSend()
+                    {
+                        id = Int32.Parse(r["t_id"].ToString()),
+                        is_enable = Int32.Parse(r["t_is_enable"].ToString()),
+                        date_to_execute = r["t_date_to_execute"].ToString(),
+                        id_firm_mails = Int32.Parse(r["t_id_firm_mails"].ToString())
+                    });
+                }
+            }
+            return tmp;
+        }
 
         public TaskToSend GetLastTaskFromFirm(Firm f) {
             CreateConnection();
-
+            TaskToSend tmp=null;
             SQLiteCommand com = connection.CreateCommand();
             com.CommandText = "SELECT tasks.id as t_id, tasks.date_to_execute as t_date_to_execute, tasks.id_firm_mails as t_id_firm_mails, tasks.is_enable as t_is_enable FROM tasks " +
-                              "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id "+
-                              "WHERE firm_mails.id_firm="+f.id+ " ORDER BY tasks.date_to_execute DESC;";
+                              "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id " +
+                              "WHERE firm_mails.id_firm=" + f.id + " ORDER BY tasks.date_to_execute DESC;";
             SQLiteDataReader r = com.ExecuteReader();
-            r.Read();
-            TaskToSend tmp = new TaskToSend() {
-                id = Int32.Parse(r["t_id"].ToString()),
-                date_to_execute= r["t_date_to_execute"].ToString(),
-                id_firm_mails= Int32.Parse(r["t_id_firm_mails"].ToString()),
-                is_enable = Int32.Parse(r["t_is_enable"].ToString()),
-            };
-
-            return tmp; 
+            if (r.FieldCount > 0)
+            {
+                r.Read();
+                tmp = new TaskToSend()
+                {
+                    id = Int32.Parse(r["t_id"].ToString()),
+                    date_to_execute = r["t_date_to_execute"].ToString(),
+                    id_firm_mails = Int32.Parse(r["t_id_firm_mails"].ToString()),
+                    is_enable = Int32.Parse(r["t_is_enable"].ToString()),
+                };
+            }
             CloseConnection();
+            return tmp;
+        }
+        public TaskToSend GetLastTaskFromFirmWork(Firm f)
+        {
+            TaskToSend tmp = null;
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT tasks.id as t_id, tasks.date_to_execute as t_date_to_execute, tasks.id_firm_mails as t_id_firm_mails, tasks.is_enable as t_is_enable FROM tasks " +
+                              "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id " +
+                              "WHERE firm_mails.id_firm=" + f.id + " ORDER BY tasks.date_to_execute DESC;";
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0)
+            {
+                r.Read();
+                tmp = new TaskToSend()
+                {
+                    id = Int32.Parse(r["t_id"].ToString()),
+                    date_to_execute = r["t_date_to_execute"].ToString(),
+                    id_firm_mails = Int32.Parse(r["t_id_firm_mails"].ToString()),
+                    is_enable = Int32.Parse(r["t_is_enable"].ToString()),
+                };
+            }
+            return tmp;
         }
 
         //public TaskToSend GetLastTaskFromFirm(Mail m)

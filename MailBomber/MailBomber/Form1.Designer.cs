@@ -33,28 +33,28 @@
             this.импортБазыИзtxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.заданияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgv_activeTask = new System.Windows.Forms.DataGridView();
             this.lv_activeTask = new System.Windows.Forms.ListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgv_executedTask = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgv_allTask = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.picb_internet = new System.Windows.Forms.PictureBox();
-            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_activeTask)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_executedTask)).BeginInit();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_allTask)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -102,6 +102,13 @@
             this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
             this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem.Text = "Создать задание на конкретный Email";
             this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem.Click += new System.EventHandler(this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem_Click);
+            // 
+            // сформироватьЗаданияНаВсюБазуToolStripMenuItem
+            // 
+            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Name = "сформироватьЗаданияНаВсюБазуToolStripMenuItem";
+            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
+            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Text = "Сформировать задания на всю базу";
+            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Click += new System.EventHandler(this.сформироватьЗаданияНаВсюБазуToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -174,6 +181,16 @@
             this.tabPage2.Text = "Выполненные задания";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // dgv_executedTask
+            // 
+            this.dgv_executedTask.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_executedTask.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_executedTask.Location = new System.Drawing.Point(3, 3);
+            this.dgv_executedTask.Name = "dgv_executedTask";
+            this.dgv_executedTask.ReadOnly = true;
+            this.dgv_executedTask.Size = new System.Drawing.Size(506, 314);
+            this.dgv_executedTask.TabIndex = 0;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dgv_allTask);
@@ -184,16 +201,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Все задания";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // dgv_executedTask
-            // 
-            this.dgv_executedTask.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_executedTask.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_executedTask.Location = new System.Drawing.Point(3, 3);
-            this.dgv_executedTask.Name = "dgv_executedTask";
-            this.dgv_executedTask.ReadOnly = true;
-            this.dgv_executedTask.Size = new System.Drawing.Size(506, 314);
-            this.dgv_executedTask.TabIndex = 0;
             // 
             // dgv_allTask
             // 
@@ -239,7 +246,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 2);
+            this.label1.Location = new System.Drawing.Point(23, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 0;
@@ -249,18 +256,11 @@
             // 
             this.picb_internet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picb_internet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picb_internet.Location = new System.Drawing.Point(3, 20);
+            this.picb_internet.Location = new System.Drawing.Point(3, 19);
             this.picb_internet.Name = "picb_internet";
-            this.picb_internet.Size = new System.Drawing.Size(121, 15);
+            this.picb_internet.Size = new System.Drawing.Size(121, 16);
             this.picb_internet.TabIndex = 1;
             this.picb_internet.TabStop = false;
-            // 
-            // сформироватьЗаданияНаВсюБазуToolStripMenuItem
-            // 
-            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Name = "сформироватьЗаданияНаВсюБазуToolStripMenuItem";
-            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
-            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Text = "Сформировать задания на всю базу";
-            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Click += new System.EventHandler(this.сформироватьЗаданияНаВсюБазуToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -280,8 +280,8 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_activeTask)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_executedTask)).EndInit();
+            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_allTask)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);

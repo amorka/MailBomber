@@ -9,6 +9,9 @@ namespace MailBomber
 {
     class TasksList
     {
+
+        public AutoCreateTasks actForm;
+
         List<TaskToSend> _LTasks;
         public List<TaskToSend> LTasks {
             get {
@@ -40,26 +43,45 @@ namespace MailBomber
             _LTasks = DBWorker.Instance.GetTasksList();
         }
 
-        public void CreateTask(Mail m, DateTask d) {
+        public void CreateTasks() {
             // Получение информации о количестве майлов у фирмы
-            Firm f = DBWorker.Instance.GetFirmFromMail(m, MailSearch.ID);
-            List<TaskToSend> lTasks = DBWorker.Instance.IsExistTask(m);
-            if (lTasks != null) {
-                if (lTasks.Exists(e => e.is_enable == 1))
-                {
-                    MessageBox.Show("На данный Емайл уже есть активное задание");
-                }
-                else
-                {
-                    FirmMails tmp = DBWorker.Instance.GetFirmMailsObj(m);
-                    DBWorker.Instance.AddTask(new TaskToSend() {
-                                                date_to_execute = d.Date,
-                                                is_enable = 1,
-                                                id_firm_mails= tmp.id
-                    });
-                    UpdateTasksList();
+            List<Firm> fl = DBWorker.Instance.GetFrims();
+            DBWorker.Instance.BeginWork();
+            // Проход по каждой фирме
+            foreach (Firm f in fl) {
+                //Проход по майлам фирмы
+                foreach (Mail m in DBWorker.Instance.GetMailsFromFirmWork(f)) {
+                    // еси на данный майл задания нет.
+                    if (DBWorker.Instance.IsExistTaskWork(m) == null) {
+                        // получаем последнее задание по фирме
+                        TaskToSend tts = DBWorker.Instance.GetLastTaskFromFirmWork(f);
+                        // если заданий нет вообще
+                        if (tts == null)
+                        {
+                            DBWorker.Instance.AddTaskWork(new TaskToSend()
+                            {
+                                id_firm_mails = DBWorker.Instance.GetFirmMailsObjWork(f).id,
+                                date_to_execute = new DateTask(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).Date,
+                                is_enable = 1
+                            });
+                           // actForm.Invoke(Delegate.CreateDelegate(typeof(void),actForm, "PBActionAddTasks"));
+                        }
+                        // если у фирмы есть задания на другие емайлы
+                        else
+                        {
+                            DateTask dt = new DateTask().Parse(tts.date_to_execute);
+                            DBWorker.Instance.AddTaskWork(new TaskToSend()
+                            {
+                                id_firm_mails = DBWorker.Instance.GetFirmMailsObjWork(f).id,
+                                date_to_execute = dt.CalcDate(),
+                                is_enable = 1
+                            });
+                           // actForm.Invoke(Delegate.CreateDelegate(typeof(void), actForm, "PBActionAddTasks"));
+                        }
+                    }
                 }
             }
+            DBWorker.Instance.EndWork();
         }
     }
 }

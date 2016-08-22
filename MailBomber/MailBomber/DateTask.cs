@@ -34,5 +34,16 @@ namespace MailBomber
             Day= Int32.Parse(g_dd.Value);
             return this;
         }
+
+        public string CalcDate() {
+
+            DateTime dt_prev = new DateTime(Year, Month, Day);
+            dt_prev.AddDays(1);
+            Year = dt_prev.Year;
+            Month = dt_prev.Month;
+            Day = dt_prev.Day;
+            Date = Year.ToString() + "-" + Month.ToString() + "-" + Day.ToString();
+            return Date;
+        }
     }
 }
