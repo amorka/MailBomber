@@ -74,6 +74,7 @@
             this.tb_title.Name = "tb_title";
             this.tb_title.Size = new System.Drawing.Size(218, 20);
             this.tb_title.TabIndex = 3;
+            this.tb_title.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb_word
             // 
@@ -116,6 +117,7 @@
             this.tb_ctd.Name = "tb_ctd";
             this.tb_ctd.Size = new System.Drawing.Size(87, 20);
             this.tb_ctd.TabIndex = 8;
+            this.tb_ctd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb_delay
             // 
@@ -123,6 +125,7 @@
             this.tb_delay.Name = "tb_delay";
             this.tb_delay.Size = new System.Drawing.Size(87, 20);
             this.tb_delay.TabIndex = 10;
+            this.tb_delay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
