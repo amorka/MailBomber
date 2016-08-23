@@ -16,6 +16,7 @@ namespace MailBomber
     {
         TasksList tl;
 
+        public delegate void DChangeCountSendedMails(int c);
         
 
         public Form1()
@@ -121,7 +122,12 @@ namespace MailBomber
         }
 
         public void changeCountSendedMails(int count) {
-            lb_count_mails_to_sended.Text = count.ToString();
+            lb_count_mails_to_sended.Invoke(new DChangeCountSendedMails(SetCountSendedMails), new object[] { count});
+        }
+
+        private void SetCountSendedMails(int c) {
+            lb_count_mails_to_sended.Text = c.ToString();
+            UpdateListTask();
         }
     }
 }

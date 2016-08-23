@@ -66,7 +66,8 @@ namespace MailBomber
                                 date_to_execute = new DateTask(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).Date,
                                 is_enable = 1
                             });
-                            // actForm.Invoke(Delegate.CreateDelegate(typeof(void),actForm, "PBActionAddTasks"));
+
+                            actForm.Invoke(actForm.AddTascCountMethod);
                         }
                         // если у фирмы есть задания на другие емайлы
                         else
@@ -80,6 +81,7 @@ namespace MailBomber
                             });
                             //Console.WriteLine(String.Format("Задание для {0} на майл {1} c датой{2}", f.name, m.mail, dt.Date));
                             // actForm.Invoke(Delegate.CreateDelegate(typeof(void), actForm, "PBActionAddTasks"));
+                            actForm.Invoke(actForm.AddTascCountMethod);
                         }
                     }
                     else {

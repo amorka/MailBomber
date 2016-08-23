@@ -16,6 +16,8 @@ namespace MailBomber
         public delegate void DPBActionAddTasks();
         public event DPBActionAddTasks PBActionAddTasks;
 
+        public DPBActionAddTasks AddTascCountMethod;
+
         public AutoCreateTasks()
         {
             InitializeComponent();
@@ -42,6 +44,7 @@ namespace MailBomber
             pb_autoCreateTasks.Minimum = 0;
             pb_autoCreateTasks.Maximum=DBWorker.Instance.GetMailsWhereDontHaveTasks().Count;
             PBActionAddTasks += AutoCreateTasks_PBActionAddTasks;
+            AddTascCountMethod += EnableTaskPB;
 
         }
 
@@ -58,6 +61,10 @@ namespace MailBomber
         private void tb_mail_to_day_TextChanged(object sender, EventArgs e)
         {
             CalcInfo();
+        }
+
+        public void EnableTaskPB() {
+            AutoCreateTasks_PBActionAddTasks();
         }
     }
 }

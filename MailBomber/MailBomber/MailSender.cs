@@ -54,7 +54,7 @@ namespace MailBomber
                 Mail m = DBWorker.Instance.GetMailFromTask(ttsList[i]);
                 Firm f = DBWorker.Instance.GetFirmFromMail(m, MailSearch.ID);
 
-                if (SendMail("mail.nic.ru", "robot@skb-4.com ", "27SPMcDHHw9KQ", m.mail,ms.title,ms.body.Replace(ms.word_to_replease,f.name)))
+                if (SendMail("mail.nic.ru", "robot@skb-4.com", "27SPMcDHHw9KQ", m.mail,ms.title,ms.body.Replace(ms.word_to_replease,f.name)))
                 {
                     //запись в базу об исполненом задании
                     ttsList[i].is_enable = 0;
@@ -65,10 +65,9 @@ namespace MailBomber
                 else {
                     break;
                 }
-                    
-
-               // Thread.Sleep(ms.delay_to_send);
+                Thread.Sleep(ms.delay_to_send*1000);
             }
+            MessageBox.Show("Дневная рассылка завершена!");
         }
 
 

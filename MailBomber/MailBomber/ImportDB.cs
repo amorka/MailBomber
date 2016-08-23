@@ -48,6 +48,7 @@ namespace MailBomber
             DlgSetMaxPB = new DlgObjSetMaxPB(SetMaxPB);
             DlgSetValPB = new DlgObjSetValPB(SetValuePB);
             DlgSetValLB = new DlgObjSetValLB(SetValLB);
+            task_add_in_base = new Task(add_in_base);
 
         }
 
@@ -81,7 +82,6 @@ namespace MailBomber
 
         private void button2_Click(object sender, EventArgs e)
         {
-            task_add_in_base = new Task(add_in_base);
             DBWorker.Instance.BeginWork();
             task_add_in_base.Start();
         }
@@ -96,11 +96,13 @@ namespace MailBomber
                 for (int i = 0; i < di.mails.Count; i++)
                 {
                         DBWorker.Instance.AddFrirmMailsWork(di.firms[i], di.mails[i]);
-                        pb.Invoke(DlgSetValPB, new object[] { i });
+                        pb.Invoke(DlgSetValPB, new object[] { (i+1) });
                         label1.Invoke(DlgSetValLB, new object[] { di.mails[i].mail });
                 }
                 DBWorker.Instance.EndWork();
                 MessageBox.Show("Импорт завершен!");
+                DialogResult = DialogResult.OK;
+                this.Close();
             }
 
         }
