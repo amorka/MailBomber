@@ -48,9 +48,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.picb_internet = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.lb_count_mails_to_sended = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.lb_count_mails_to_sended = new System.Windows.Forms.Label();
+            this.письмоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.редактироватьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -70,7 +72,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
-            this.заданияToolStripMenuItem});
+            this.заданияToolStripMenuItem,
+            this.письмоToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(526, 24);
@@ -285,6 +288,16 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(254, 38);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
+            // lb_count_mails_to_sended
+            // 
+            this.lb_count_mails_to_sended.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lb_count_mails_to_sended.AutoSize = true;
+            this.lb_count_mails_to_sended.Location = new System.Drawing.Point(104, 12);
+            this.lb_count_mails_to_sended.Name = "lb_count_mails_to_sended";
+            this.lb_count_mails_to_sended.Size = new System.Drawing.Size(13, 13);
+            this.lb_count_mails_to_sended.TabIndex = 2;
+            this.lb_count_mails_to_sended.Text = "0";
+            // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -307,15 +320,20 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Отправлено";
             // 
-            // lb_count_mails_to_sended
+            // письмоToolStripMenuItem
             // 
-            this.lb_count_mails_to_sended.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lb_count_mails_to_sended.AutoSize = true;
-            this.lb_count_mails_to_sended.Location = new System.Drawing.Point(104, 12);
-            this.lb_count_mails_to_sended.Name = "lb_count_mails_to_sended";
-            this.lb_count_mails_to_sended.Size = new System.Drawing.Size(13, 13);
-            this.lb_count_mails_to_sended.TabIndex = 2;
-            this.lb_count_mails_to_sended.Text = "0";
+            this.письмоToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.редактироватьШаблонToolStripMenuItem});
+            this.письмоToolStripMenuItem.Name = "письмоToolStripMenuItem";
+            this.письмоToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.письмоToolStripMenuItem.Text = "Письмо";
+            // 
+            // редактироватьШаблонToolStripMenuItem
+            // 
+            this.редактироватьШаблонToolStripMenuItem.Name = "редактироватьШаблонToolStripMenuItem";
+            this.редактироватьШаблонToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.редактироватьШаблонToolStripMenuItem.Text = "Редактировать шаблон";
+            this.редактироватьШаблонToolStripMenuItem.Click += new System.EventHandler(this.редактироватьШаблонToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -374,6 +392,8 @@
         private System.Windows.Forms.Label lb_count_mails_to_sended;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem письмоToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem редактироватьШаблонToolStripMenuItem;
     }
 }
 

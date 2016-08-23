@@ -848,6 +848,15 @@ namespace MailBomber
             CloseConnection();
         }
 
+        public void UpdateMailSetting(string title, string body, string word, int c_t_d, int delay)
+        {
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "UPDATE mail_settings SET title='" + title + "', body='" + body + "', word_to_replease='"+word+ "', count_mails_to_send_in_day="+c_t_d+", delay_to_send="+delay+" WHERE id=1;";
+            com.ExecuteNonQuery();
+            CloseConnection();
+        }
+
 
 
         //public TaskToSend GetLastTaskFromFirm(Mail m)

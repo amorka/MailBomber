@@ -129,5 +129,13 @@ namespace MailBomber
             lb_count_mails_to_sended.Text = c.ToString();
             UpdateListTask();
         }
+
+        private void редактироватьШаблонToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MailTemplate mt = new MailTemplate();
+            if (mt.ShowDialog() == DialogResult.OK) {
+                MessageBox.Show("Настройки сохранены!");
+            }
+        }
     }
 }
