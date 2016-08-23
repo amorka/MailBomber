@@ -116,6 +116,7 @@
     <Compile Include="ImportDB.Designer.cs">
       <DependentUpon>ImportDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="InternetTester.cs" />
     <Compile Include="Mail.cs" />
     <Compile Include="MailSender.cs" />
     <Compile Include="MailSettings.cs" />

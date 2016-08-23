@@ -839,6 +839,15 @@ namespace MailBomber
             return m;
         }
 
+        public void UpdateMailSetting(int count_to_day, int delay) {
+            CreateConnection();
+
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "UPDATE TABLE mail_settings SET count_mails_to_send_in_day=" + count_to_day + ", delay_to_send="+ delay + " WHERE id=1;";
+            com.ExecuteNonQuery();
+            CloseConnection();
+        }
+
 
 
         //public TaskToSend GetLastTaskFromFirm(Mail m)

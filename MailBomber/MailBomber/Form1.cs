@@ -16,6 +16,8 @@ namespace MailBomber
     {
         TasksList tl;
 
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -39,22 +41,15 @@ namespace MailBomber
             dgv_allTask.AllowUserToAddRows = false;
             dgv_allTask.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            picb_internet.BackColor = Color.Red;
-            TestInternet();
-
-        }
-
-        private void TestInternet()
-        {
-            //Process p = new Process();
-            //p.StartInfo.FileName = "cmd.exe";
-            //p.StartInfo.Arguments = @"/C ping google.com";
-            //p.StartInfo.RedirectStandardOutput = true;
-            //p.StartInfo.UseShellExecute = false;
-            //p.Start();
-            //StreamReader sr = p.StandardOutput;
-            //this.Text = sr.ReadToEnd();
-            //sr.Close();
+            if (InternetTester.TestInternetConnection() == ConnectionStatus.Connected)
+            {
+                picb_internet.BackColor = Color.Green;
+                button1.Enabled = true;
+            }
+            else
+            {
+                picb_internet.BackColor = Color.Red;
+            }
         }
 
         private void импортБазыИзtxtToolStripMenuItem_Click(object sender, EventArgs e)
@@ -104,6 +99,29 @@ namespace MailBomber
             if (act.ShowDialog() == DialogResult.OK) {
                 UpdateListTask();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MailSender.Instance.EventInternetStatus += changeStatusInternet;
+            MailSender.Instance.EventMailSended += changeCountSendedMails;
+            MailSender.Instance.StartSender();
+        }
+
+        public void changeStatusInternet(ConnectionStatus cs) {
+            if (cs == ConnectionStatus.Connected)
+            {
+                picb_internet.BackColor = Color.Green;
+            }
+            else
+            {
+                picb_internet.BackColor = Color.Red;
+                button1.Enabled = false;
+            }
+        }
+
+        public void changeCountSendedMails(int count) {
+            lb_count_mails_to_sended.Text = count.ToString();
         }
     }
 }

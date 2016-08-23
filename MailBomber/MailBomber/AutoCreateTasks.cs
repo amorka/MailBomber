@@ -25,10 +25,8 @@ namespace MailBomber
         {
             TasksList tl = new TasksList();
             tl.actForm = this;
-            // Добавить Методы быстрого добавления заданий
             tl.CreateTasks();
-            // итерация 301 раз
-
+            DBWorker.Instance.UpdateMailSetting(Int32.Parse(tb_mail_to_day.Text), Int32.Parse(tb_delayToSend.Text));
             DialogResult = DialogResult.OK;
             this.Close();
         }
