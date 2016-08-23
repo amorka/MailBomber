@@ -92,22 +92,22 @@ namespace MailBomber
             CloseConnection();
         }
 
-        private void UpgateMail(Mail m) {
+        private void UpdateMail(Mail m) {
             CreateConnection();
 
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "UPDATE TABLE mails SET  mail='" + m.mail + "' WHERE id="+m.id+";";
+            com.CommandText = "UPDATE mails SET  mail='" + m.mail + "' WHERE id="+m.id+";";
             com.ExecuteNonQuery();
             CloseConnection();
         }
-        private void UpgateMail(List<Mail> ml)
+        private void UpdateMail(List<Mail> ml)
         {
             CreateConnection();
 
             SQLiteCommand com = connection.CreateCommand();
             foreach (Mail m in ml)
             {
-                com.CommandText = "UPDATE TABLE mails SET  mail='" + m.mail + "' WHERE id=" + m.id + ";";
+                com.CommandText = "UPDATE mails SET  mail='" + m.mail + "' WHERE id=" + m.id + ";";
                 com.ExecuteNonQuery();
             }
             CloseConnection();
@@ -245,23 +245,23 @@ namespace MailBomber
             CloseConnection();
         }
 
-        private void UpgateFirm(Firm f)
+        private void UpdateFirm(Firm f)
         {
             CreateConnection();
 
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "UPDATE TABLE firms SET  name='" + f.name + "' WHERE id=" + f.id + ";";
+            com.CommandText = "UPDATE firms SET  name='" + f.name + "' WHERE id=" + f.id + ";";
             com.ExecuteNonQuery();
             CloseConnection();
         }
-        private void UpgateFirms(List<Firm> fl)
+        private void UpdateFirms(List<Firm> fl)
         {
             CreateConnection();
 
             SQLiteCommand com = connection.CreateCommand();
             foreach (Firm f in fl)
             {
-                com.CommandText = "UPDATE TABLE firms SET  name='" + f.name + "' WHERE id=" + f.id + ";";
+                com.CommandText = "UPDATE firms SET  name='" + f.name + "' WHERE id=" + f.id + ";";
                 com.ExecuteNonQuery();
             }
             CloseConnection();
@@ -678,7 +678,7 @@ namespace MailBomber
         public void UpdateTasks(TaskToSend tts) {
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "UPDATE TABLE tasks SET id_firm_mails="+tts.id_firm_mails+ ", is_enable="+tts.is_enable+ ", date_to_execute='"+tts.date_to_execute+"' WHERE id=" + tts.id + ";";
+            com.CommandText = "UPDATE tasks SET id_firm_mails="+tts.id_firm_mails+ ", is_enable="+tts.is_enable+ ", date_to_execute='"+tts.date_to_execute+"' WHERE id=" + tts.id + ";";
             com.ExecuteNonQuery();
             CloseConnection();
         }
@@ -817,7 +817,7 @@ namespace MailBomber
             Mail m = null;
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "SELECT mails.id as m_id, mails.mail as m_mail"+
+            com.CommandText = "SELECT mails.id as m_id, mails.mail as m_mail "+
                               "FROM tasks "+
                               "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id "+
                               "INNER JOIN mails ON firm_mails.id_mail=mails.id "+
@@ -843,7 +843,7 @@ namespace MailBomber
             CreateConnection();
 
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "UPDATE TABLE mail_settings SET count_mails_to_send_in_day=" + count_to_day + ", delay_to_send="+ delay + " WHERE id=1;";
+            com.CommandText = "UPDATE mail_settings SET count_mails_to_send_in_day=" + count_to_day + ", delay_to_send="+ delay + " WHERE id=1;";
             com.ExecuteNonQuery();
             CloseConnection();
         }

@@ -23,10 +23,11 @@ namespace MailBomber
 
         private void btn_createTasks_Click(object sender, EventArgs e)
         {
+            DBWorker.Instance.UpdateMailSetting(Int32.Parse(tb_mail_to_day.Text), Int32.Parse(tb_delayToSend.Text));
             TasksList tl = new TasksList();
             tl.actForm = this;
             tl.CreateTasks();
-            DBWorker.Instance.UpdateMailSetting(Int32.Parse(tb_mail_to_day.Text), Int32.Parse(tb_delayToSend.Text));
+            
             DialogResult = DialogResult.OK;
             this.Close();
         }

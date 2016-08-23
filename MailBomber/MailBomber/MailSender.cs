@@ -54,7 +54,7 @@ namespace MailBomber
                 Mail m = DBWorker.Instance.GetMailFromTask(ttsList[i]);
                 Firm f = DBWorker.Instance.GetFirmFromMail(m, MailSearch.ID);
 
-                if (SendMail("mail.nic.ru", "robot@skb-4.com ","pass",m.mail,ms.title,ms.body.Replace(ms.word_to_replease,f.name)))
+                if (SendMail("mail.nic.ru", "robot@skb-4.com ", "27SPMcDHHw9KQ", m.mail,ms.title,ms.body.Replace(ms.word_to_replease,f.name)))
                 {
                     //запись в базу об исполненом задании
                     ttsList[i].is_enable = 0;
@@ -67,7 +67,7 @@ namespace MailBomber
                 }
                     
 
-                Thread.Sleep(ms.delay_to_send);
+               // Thread.Sleep(ms.delay_to_send);
             }
         }
 
@@ -80,20 +80,22 @@ namespace MailBomber
                 mail.From = new MailAddress(from);
                 mail.To.Add(new MailAddress(mailto));
                 mail.Subject = caption;
+                mail.IsBodyHtml = true;
                 mail.Body = message;
                 if (!string.IsNullOrEmpty(attachFile))
                     mail.Attachments.Add(new Attachment(attachFile));
+                
                 SmtpClient client = new SmtpClient();
                 client.Host = smtpServer;
                 client.Port = 25;
-                client.EnableSsl = true;
+                client.EnableSsl = false;
                 client.Credentials = new NetworkCredential(from, password);
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.Send(mail);
                 mail.Dispose();
                 return true;
             }
-            catch (Exception e)
+            catch (SmtpException e)
             {
                 MessageBox.Show("Ошибка отправки сообщения - " + e.Message);
                 return false;
