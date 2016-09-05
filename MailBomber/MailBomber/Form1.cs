@@ -87,6 +87,8 @@ namespace MailBomber
             bs_allTask.DataSource = tl.LTasks;
             dgv_allTask.DataSource = bs_allTask;
 
+            lb_act_tasks.Text = dgv_activeTask.Rows.Count.ToString();
+
         }
 
         private void dgv_activeTask_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

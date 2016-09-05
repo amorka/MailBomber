@@ -34,6 +34,8 @@
             this.заданияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сформироватьЗаданияНаВсюБазуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.письмоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.редактироватьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -51,8 +53,10 @@
             this.lb_count_mails_to_sended = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.письмоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.редактироватьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lb_act_tasks = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -66,6 +70,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picb_internet)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -117,6 +123,21 @@
             this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
             this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Text = "Сформировать задания на всю базу";
             this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Click += new System.EventHandler(this.сформироватьЗаданияНаВсюБазуToolStripMenuItem_Click);
+            // 
+            // письмоToolStripMenuItem
+            // 
+            this.письмоToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.редактироватьШаблонToolStripMenuItem});
+            this.письмоToolStripMenuItem.Name = "письмоToolStripMenuItem";
+            this.письмоToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.письмоToolStripMenuItem.Text = "Письмо";
+            // 
+            // редактироватьШаблонToolStripMenuItem
+            // 
+            this.редактироватьШаблонToolStripMenuItem.Name = "редактироватьШаблонToolStripMenuItem";
+            this.редактироватьШаблонToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.редактироватьШаблонToolStripMenuItem.Text = "Редактировать шаблон";
+            this.редактироватьШаблонToolStripMenuItem.Click += new System.EventHandler(this.редактироватьШаблонToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -277,9 +298,9 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 84F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.35294F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.64706F));
-            this.tableLayoutPanel4.Controls.Add(this.lb_count_mails_to_sended, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel6, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.button1, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(263, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -292,7 +313,7 @@
             // 
             this.lb_count_mails_to_sended.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lb_count_mails_to_sended.AutoSize = true;
-            this.lb_count_mails_to_sended.Location = new System.Drawing.Point(104, 12);
+            this.lb_count_mails_to_sended.Location = new System.Drawing.Point(17, 1);
             this.lb_count_mails_to_sended.Name = "lb_count_mails_to_sended";
             this.lb_count_mails_to_sended.Size = new System.Drawing.Size(13, 13);
             this.lb_count_mails_to_sended.TabIndex = 2;
@@ -314,26 +335,59 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 12);
+            this.label2.Location = new System.Drawing.Point(5, 1);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Отправлено";
             // 
-            // письмоToolStripMenuItem
+            // tableLayoutPanel5
             // 
-            this.письмоToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.редактироватьШаблонToolStripMenuItem});
-            this.письмоToolStripMenuItem.Name = "письмоToolStripMenuItem";
-            this.письмоToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
-            this.письмоToolStripMenuItem.Text = "Письмо";
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(78, 32);
+            this.tableLayoutPanel5.TabIndex = 1;
             // 
-            // редактироватьШаблонToolStripMenuItem
+            // tableLayoutPanel6
             // 
-            this.редактироватьШаблонToolStripMenuItem.Name = "редактироватьШаблонToolStripMenuItem";
-            this.редактироватьШаблонToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.редактироватьШаблонToolStripMenuItem.Text = "Редактировать шаблон";
-            this.редактироватьШаблонToolStripMenuItem.Click += new System.EventHandler(this.редактироватьШаблонToolStripMenuItem_Click);
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.lb_act_tasks, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.lb_count_mails_to_sended, 0, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(87, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(48, 32);
+            this.tableLayoutPanel6.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Осталось";
+            // 
+            // lb_act_tasks
+            // 
+            this.lb_act_tasks.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lb_act_tasks.AutoSize = true;
+            this.lb_act_tasks.Location = new System.Drawing.Point(17, 17);
+            this.lb_act_tasks.Name = "lb_act_tasks";
+            this.lb_act_tasks.Size = new System.Drawing.Size(13, 13);
+            this.lb_act_tasks.TabIndex = 3;
+            this.lb_act_tasks.Text = "0";
             // 
             // Form1
             // 
@@ -361,7 +415,10 @@
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picb_internet)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -394,6 +451,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem письмоToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem редактироватьШаблонToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Label lb_act_tasks;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Label label3;
     }
 }
 

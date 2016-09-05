@@ -852,6 +852,7 @@ namespace MailBomber
         {
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
+            BinaryWriter bw = new BinaryWriter(new MemoryStream());
             com.CommandText = "UPDATE mail_settings SET title='" + title + "', body='" + body + "', word_to_replease='"+word+ "', count_mails_to_send_in_day="+c_t_d+", delay_to_send="+delay+" WHERE id=1;";
             com.ExecuteNonQuery();
             CloseConnection();
