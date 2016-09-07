@@ -107,7 +107,7 @@ namespace MailBomber
             }
             catch (Exception e)
             {
-                MessageBox.Show("Ошибка отправки сообщения - " + e.Message);
+                MessageBox.Show("Ошибка отправки сообщения - " + e.Message+" тема  "+caption);
                 return false;
             }
         }
