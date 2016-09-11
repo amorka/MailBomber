@@ -572,7 +572,7 @@ namespace MailBomber
             List<TaskToSend> tmp = new List<TaskToSend>();
             CreateConnection();
                 SQLiteCommand com = connection.CreateCommand();
-                com.CommandText = "SELECT * FROM tasks ORDER BY tasks.date_to_execute ASC;";
+                com.CommandText = "SELECT * FROM tasks ORDER BY tasks.date_to_execute DESC;";
                 SQLiteDataReader r = com.ExecuteReader();
                 if (r.FieldCount > 0)
                 {
@@ -594,7 +594,7 @@ namespace MailBomber
             List<TaskToSend> tmp = new List<TaskToSend>();
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "SELECT * FROM tasks WHERE is_enable=1 ORDER BY tasks.date_to_execute ASC;";
+            com.CommandText = "SELECT * FROM tasks WHERE is_enable=1 ORDER BY tasks.date_to_execute DESC;";
             SQLiteDataReader r = com.ExecuteReader();
             if (r.FieldCount > 0)
             {
@@ -618,7 +618,7 @@ namespace MailBomber
             List<TaskToSend> tmp = new List<TaskToSend>();
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "SELECT * FROM tasks WHERE is_enable=1 ORDER BY tasks.date_to_execute ASC LIMIT "+limit+";";
+            com.CommandText = "SELECT * FROM tasks WHERE is_enable=1 ORDER BY tasks.date_to_execute DESC LIMIT "+limit+";";
             SQLiteDataReader r = com.ExecuteReader();
             if (r.FieldCount > 0)
             {

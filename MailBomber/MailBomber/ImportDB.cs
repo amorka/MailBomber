@@ -101,8 +101,6 @@ namespace MailBomber
                 }
                 DBWorker.Instance.EndWork();
                 MessageBox.Show("Импорт завершен!");
-                DialogResult = DialogResult.OK;
-                this.Close();
             }
 
         }

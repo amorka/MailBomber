@@ -40,10 +40,10 @@ namespace MailBomber
                 return ConnectionStatus.NotConnected;
             }
 
-            // Проверить загрузку документа ncsi.txt
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://www.msftncsi.com/ncsi.txt");
             try
             {
+                // Проверить загрузку документа ncsi.txt
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://www.msftncsi.com/ncsi.txt");
                 HttpWebResponse responce = (HttpWebResponse)request.GetResponse();
 
                 if (responce.StatusCode != HttpStatusCode.OK)

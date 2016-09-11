@@ -54,7 +54,7 @@ namespace MailBomber
                 Mail m = DBWorker.Instance.GetMailFromTask(ttsList[i]);
                 Firm f = DBWorker.Instance.GetFirmFromMail(m, MailSearch.ID);
 
-                if (SendMail("mail.nic.ru", "robot@skb-4.com", "27SPMcDHHw9KQ", m.mail,ms.title,ms.body.Replace(ms.word_to_replease,f.name)))
+                if (SendMail("mail.nic.ru", "robot@skb-4.com", "27SPMcDHHw9KQ", m.mail,ms.title.Replace(ms.word_to_replease, f.name), ms.body.Replace(ms.word_to_replease,f.name)))
                 {
                     //запись в базу об исполненом задании
                     ttsList[i].is_enable = 0;
@@ -75,26 +75,37 @@ namespace MailBomber
         {
             try
             {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress(from);
-                mail.To.Add(new MailAddress(mailto));
-                mail.Subject = caption;
-                mail.IsBodyHtml = true;
-                mail.Body = message;
-                if (!string.IsNullOrEmpty(attachFile))
-                    mail.Attachments.Add(new Attachment(attachFile));
-                
-                SmtpClient client = new SmtpClient();
-                client.Host = smtpServer;
-                client.Port = 25;
-                client.EnableSsl = false;
-                client.Credentials = new NetworkCredential(from, password);
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.Send(mail);
-                mail.Dispose();
-                return true;
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress(from);
+                    mail.To.Add(new MailAddress(mailto));
+                    mail.Subject = caption;
+                    mail.IsBodyHtml = true;
+                    mail.Body = message;
+                    if (!string.IsNullOrEmpty(attachFile))
+                        mail.Attachments.Add(new Attachment(attachFile));
+
+                    SmtpClient client = new SmtpClient();
+                    client.Host = smtpServer;
+                    client.Port = 25;
+                    client.EnableSsl = false;
+                    client.Credentials = new NetworkCredential(from, password);
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.Send(mail);
+                    mail.Dispose();
+                    return true;
+                }
+                catch (SmtpFailedRecipientException se) {
+                    // MessageBox.Show("Ошибка отправки сообщения - " + se.Message);
+                    if (InternetTester.TestInternetConnection() != ConnectionStatus.NotConnected) {
+                        Console.WriteLine("Ошибка отправления на "+ mailto);
+                        return true;
+                    }
+                    return false;
+                }
             }
-            catch (SmtpException e)
+            catch (Exception e)
             {
                 MessageBox.Show("Ошибка отправки сообщения - " + e.Message);
                 return false;
