@@ -50,13 +50,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.picb_internet = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.lb_act_tasks = new System.Windows.Forms.Label();
             this.lb_count_mails_to_sended = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
-            this.lb_act_tasks = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.заданияПоФирмамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -70,8 +71,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picb_internet)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -105,7 +106,8 @@
             // 
             this.заданияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem,
-            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem});
+            this.сформироватьЗаданияНаВсюБазуToolStripMenuItem,
+            this.заданияПоФирмамToolStripMenuItem});
             this.заданияToolStripMenuItem.Name = "заданияToolStripMenuItem";
             this.заданияToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.заданияToolStripMenuItem.Text = "Задания";
@@ -309,6 +311,30 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(254, 38);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.lb_act_tasks, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.lb_count_mails_to_sended, 0, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(87, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(48, 32);
+            this.tableLayoutPanel6.TabIndex = 2;
+            // 
+            // lb_act_tasks
+            // 
+            this.lb_act_tasks.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lb_act_tasks.AutoSize = true;
+            this.lb_act_tasks.Location = new System.Drawing.Point(17, 17);
+            this.lb_act_tasks.Name = "lb_act_tasks";
+            this.lb_act_tasks.Size = new System.Drawing.Size(13, 13);
+            this.lb_act_tasks.TabIndex = 3;
+            this.lb_act_tasks.Text = "0";
+            // 
             // lb_count_mails_to_sended
             // 
             this.lb_count_mails_to_sended.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -331,16 +357,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 1);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Отправлено";
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
@@ -355,20 +371,6 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(78, 32);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.lb_act_tasks, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.lb_count_mails_to_sended, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(87, 3);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(48, 32);
-            this.tableLayoutPanel6.TabIndex = 2;
-            // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -379,15 +381,22 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Осталось";
             // 
-            // lb_act_tasks
+            // label2
             // 
-            this.lb_act_tasks.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lb_act_tasks.AutoSize = true;
-            this.lb_act_tasks.Location = new System.Drawing.Point(17, 17);
-            this.lb_act_tasks.Name = "lb_act_tasks";
-            this.lb_act_tasks.Size = new System.Drawing.Size(13, 13);
-            this.lb_act_tasks.TabIndex = 3;
-            this.lb_act_tasks.Text = "0";
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Отправлено";
+            // 
+            // заданияПоФирмамToolStripMenuItem
+            // 
+            this.заданияПоФирмамToolStripMenuItem.Name = "заданияПоФирмамToolStripMenuItem";
+            this.заданияПоФирмамToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
+            this.заданияПоФирмамToolStripMenuItem.Text = "Задания по фирмам";
+            this.заданияПоФирмамToolStripMenuItem.Click += new System.EventHandler(this.заданияПоФирмамToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -415,10 +424,10 @@
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picb_internet)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,6 +464,7 @@
         private System.Windows.Forms.Label lb_act_tasks;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripMenuItem заданияПоФирмамToolStripMenuItem;
     }
 }
 

@@ -54,9 +54,11 @@ namespace MailBomber
             com.ExecuteNonQuery();
             com.CommandText = "CREATE TABLE firm_mails (id INTEGER PRIMARY KEY AUTOINCREMENT, id_mail INTEGER, id_firm INTEGER);";
             com.ExecuteNonQuery();
-            com.CommandText = "CREATE TABLE tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, id_firm_mails INTEGER, date_to_execute TEXT, is_enable INTEGER);";
+            com.CommandText = "CREATE TABLE tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, id_firm_mails INTEGER, ordering INTEGER, is_enable INTEGER);";
             com.ExecuteNonQuery();
             com.CommandText = "CREATE TABLE mail_settings (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, word_to_replease TEXT, count_mails_to_send_in_day INTEGER, delay_to_send INTEGER);";
+            com.ExecuteNonQuery();
+            com.CommandText = "INSERT INTO mail_settings (title, body, word_to_replease ,count_mails_to_send_in_day, delay_to_send) VALUES ('Заголовок','тело','слово для замены',300,20);";
             com.ExecuteNonQuery();
 
         }
@@ -572,7 +574,7 @@ namespace MailBomber
             List<TaskToSend> tmp = new List<TaskToSend>();
             CreateConnection();
                 SQLiteCommand com = connection.CreateCommand();
-                com.CommandText = "SELECT * FROM tasks ORDER BY tasks.date_to_execute DESC;";
+                com.CommandText = "SELECT * FROM tasks ORDER BY tasks.ordering DESC;";
                 SQLiteDataReader r = com.ExecuteReader();
                 if (r.FieldCount > 0)
                 {
@@ -581,7 +583,7 @@ namespace MailBomber
                         tmp.Add(new TaskToSend() { id=Int32.Parse(r["id"].ToString()),
                                                    is_enable = Int32.Parse(r["is_enable"].ToString()),
                                                    id_firm_mails = Int32.Parse(r["id_firm_mails"].ToString()),
-                                                   date_to_execute = r["date_to_execute"].ToString()
+                                                   ordering = Int32.Parse(r["ordering"].ToString())
                         });
                     }
                 }
@@ -594,7 +596,7 @@ namespace MailBomber
             List<TaskToSend> tmp = new List<TaskToSend>();
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "SELECT * FROM tasks WHERE is_enable=1 ORDER BY tasks.date_to_execute DESC;";
+            com.CommandText = "SELECT * FROM tasks WHERE is_enable=1 ORDER BY tasks.ordering ASC;";
             SQLiteDataReader r = com.ExecuteReader();
             if (r.FieldCount > 0)
             {
@@ -605,7 +607,7 @@ namespace MailBomber
                         id = Int32.Parse(r["id"].ToString()),
                         is_enable = Int32.Parse(r["is_enable"].ToString()),
                         id_firm_mails = Int32.Parse(r["id_firm_mails"].ToString()),
-                        date_to_execute = r["date_to_execute"].ToString()
+                        ordering = Int32.Parse(r["ordering"].ToString())
                     });
                 }
             }
@@ -618,7 +620,7 @@ namespace MailBomber
             List<TaskToSend> tmp = new List<TaskToSend>();
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "SELECT * FROM tasks WHERE is_enable=1 ORDER BY tasks.date_to_execute DESC LIMIT "+limit+";";
+            com.CommandText = "SELECT * FROM tasks WHERE is_enable=1 ORDER BY tasks.ordering ASC LIMIT " + limit+";";
             SQLiteDataReader r = com.ExecuteReader();
             if (r.FieldCount > 0)
             {
@@ -629,7 +631,7 @@ namespace MailBomber
                         id = Int32.Parse(r["id"].ToString()),
                         is_enable = Int32.Parse(r["is_enable"].ToString()),
                         id_firm_mails = Int32.Parse(r["id_firm_mails"].ToString()),
-                        date_to_execute = r["date_to_execute"].ToString()
+                        ordering = Int32.Parse(r["ordering"].ToString())
                     });
                 }
             }
@@ -642,7 +644,7 @@ namespace MailBomber
             List<TaskToSend> tmp = new List<TaskToSend>();
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "SELECT * FROM tasks WHERE is_enable=0 ORDER BY tasks.date_to_execute ASC;";
+            com.CommandText = "SELECT * FROM tasks WHERE is_enable=0 ORDER BY tasks.ordering ASC;";
             SQLiteDataReader r = com.ExecuteReader();
             if (r.FieldCount > 0)
             {
@@ -653,7 +655,7 @@ namespace MailBomber
                         id = Int32.Parse(r["id"].ToString()),
                         is_enable = Int32.Parse(r["is_enable"].ToString()),
                         id_firm_mails = Int32.Parse(r["id_firm_mails"].ToString()),
-                        date_to_execute = r["date_to_execute"].ToString()
+                        ordering = Int32.Parse(r["ordering"].ToString())
                     });
                 }
             }
@@ -664,21 +666,21 @@ namespace MailBomber
         public void AddTask(TaskToSend tts) {
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "INSERT INTO tasks (id_firm_mails, is_enable, date_to_execute) VALUES ("+tts.id_firm_mails+","+tts.is_enable+",'"+tts.date_to_execute+"');";
+            com.CommandText = "INSERT INTO tasks (id_firm_mails, is_enable, ordering) VALUES (" + tts.id_firm_mails+","+tts.is_enable+","+tts.ordering + ");";
             com.ExecuteNonQuery();
             CloseConnection();
         }
         public void AddTaskWork(TaskToSend tts)
         {
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "INSERT INTO tasks (id_firm_mails, is_enable, date_to_execute) VALUES (" + tts.id_firm_mails + "," + tts.is_enable + ",'" + tts.date_to_execute + "');";
+            com.CommandText = "INSERT INTO tasks (id_firm_mails, is_enable, ordering) VALUES (" + tts.id_firm_mails + "," + tts.is_enable + "," + tts.ordering + ");";
             com.ExecuteNonQuery();
         }
 
         public void UpdateTasks(TaskToSend tts) {
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "UPDATE tasks SET id_firm_mails="+tts.id_firm_mails+ ", is_enable="+tts.is_enable+ ", date_to_execute='"+tts.date_to_execute+"' WHERE id=" + tts.id + ";";
+            com.CommandText = "UPDATE tasks SET id_firm_mails="+tts.id_firm_mails+ ", is_enable="+tts.is_enable+ ", ordering=" + tts.ordering + " WHERE id=" + tts.id + ";";
             com.ExecuteNonQuery();
             CloseConnection();
         }
@@ -695,7 +697,7 @@ namespace MailBomber
             List<TaskToSend> tmp = null ;
             CreateConnection();
                 SQLiteCommand com = connection.CreateCommand();
-                com.CommandText = "SELECT tasks.id as t_id, tasks.is_enable as t_is_enable, tasks.date_to_execute as t_date_to_execute, tasks.id_firm_mails as t_id_firm_mails " +
+                com.CommandText = "SELECT tasks.id as t_id, tasks.is_enable as t_is_enable, tasks.ordering as t_ordering, tasks.id_firm_mails as t_id_firm_mails " +
                                   "FROM tasks " +
                                   "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id "+
                                   "WHERE firm_mails.id_mail="+m.id+";";
@@ -709,7 +711,7 @@ namespace MailBomber
                     {
                         id = Int32.Parse(r["t_id"].ToString()),
                         is_enable = Int32.Parse(r["t_is_enable"].ToString()),
-                        date_to_execute = r["t_date_to_execute"].ToString(),
+                        ordering = Int32.Parse(r["t_ordering"].ToString()),
                         id_firm_mails = Int32.Parse(r["t_id_firm_mails"].ToString())
                     });
                 }
@@ -722,7 +724,7 @@ namespace MailBomber
         {
             List<TaskToSend> tmp = null;
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "SELECT tasks.id as t_id, tasks.is_enable as t_is_enable, tasks.date_to_execute as t_date_to_execute, tasks.id_firm_mails as t_id_firm_mails " +
+            com.CommandText = "SELECT tasks.id as t_id, tasks.is_enable as t_is_enable, tasks.ordering as t_ordering, tasks.id_firm_mails as t_id_firm_mails " +
                               "FROM tasks " +
                               "LEFT JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id " +
                               "WHERE firm_mails.id_mail=" + m.id + ";";
@@ -736,7 +738,7 @@ namespace MailBomber
                     {
                         id = Int32.Parse(r["t_id"].ToString()),
                         is_enable = Int32.Parse(r["t_is_enable"].ToString()),
-                        date_to_execute = r["t_date_to_execute"].ToString(),
+                        ordering = Int32.Parse(r["t_ordering"].ToString()),
                         id_firm_mails = Int32.Parse(r["t_id_firm_mails"].ToString())
                     });
                 }
@@ -748,9 +750,9 @@ namespace MailBomber
             CreateConnection();
             TaskToSend tmp=null;
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "SELECT tasks.id as t_id, tasks.date_to_execute as t_date_to_execute, tasks.id_firm_mails as t_id_firm_mails, tasks.is_enable as t_is_enable FROM tasks " +
+            com.CommandText = "SELECT tasks.id as t_id, tasks.ordering as t_ordering, tasks.id_firm_mails as t_id_firm_mails, tasks.is_enable as t_is_enable FROM tasks " +
                               "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id " +
-                              "WHERE firm_mails.id_firm=" + f.id + " ORDER BY tasks.date_to_execute DESC;";
+                              "WHERE firm_mails.id_firm=" + f.id + " ORDER BY tasks.ordering DESC;";
             SQLiteDataReader r = com.ExecuteReader();
             if (r.FieldCount > 0)
             {
@@ -758,7 +760,7 @@ namespace MailBomber
                 tmp = new TaskToSend()
                 {
                     id = Int32.Parse(r["t_id"].ToString()),
-                    date_to_execute = r["t_date_to_execute"].ToString(),
+                    ordering = Int32.Parse(r["t_ordering"].ToString()),
                     id_firm_mails = Int32.Parse(r["t_id_firm_mails"].ToString()),
                     is_enable = Int32.Parse(r["t_is_enable"].ToString()),
                 };
@@ -770,9 +772,9 @@ namespace MailBomber
         {
             TaskToSend tmp = null;
             SQLiteCommand com = connection.CreateCommand();
-            com.CommandText = "SELECT tasks.id as t_id, tasks.date_to_execute as t_date_to_execute, tasks.id_firm_mails as t_id_firm_mails, tasks.is_enable as t_is_enable FROM tasks " +
+            com.CommandText = "SELECT tasks.id as t_id, tasks.ordering as t_ordering, tasks.id_firm_mails as t_id_firm_mails, tasks.is_enable as t_is_enable FROM tasks " +
                               "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id " +
-                              "WHERE firm_mails.id_firm=" + f.id + " ORDER BY tasks.date_to_execute DESC;";
+                              "WHERE firm_mails.id_firm=" + f.id + " ORDER BY tasks.ordering DESC;";
             SQLiteDataReader r = com.ExecuteReader();
             if (r.StepCount > 0)
             {
@@ -780,9 +782,9 @@ namespace MailBomber
                 tmp = new TaskToSend()
                 {
                     id = Int32.Parse(r["t_id"].ToString()),
-                    date_to_execute = r["t_date_to_execute"].ToString(),
+                    ordering = Int32.Parse(r["t_ordering"].ToString()),
                     id_firm_mails = Int32.Parse(r["t_id_firm_mails"].ToString()),
-                    is_enable = Int32.Parse(r["t_is_enable"].ToString()),
+                    is_enable = Int32.Parse(r["t_is_enable"].ToString())
                 }; 
             }
             return tmp;
@@ -856,6 +858,32 @@ namespace MailBomber
             com.CommandText = "UPDATE mail_settings SET title='" + title + "', body='" + body + "', word_to_replease='"+word+ "', count_mails_to_send_in_day="+c_t_d+", delay_to_send="+delay+" WHERE id=1;";
             com.ExecuteNonQuery();
             CloseConnection();
+        }
+
+        public List<TaskToSend> GetTasksListFromFirm(Firm f) {
+            List<TaskToSend> tmp = new List<TaskToSend>();
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "SELECT tasks.id as t_id, tasks.ordering as t_ordering, tasks.id_firm_mails as t_id_firm_mails, tasks.is_enable as t_is_enable FROM tasks " +
+                              "INNER JOIN firm_mails ON tasks.id_firm_mails=firm_mails.id " +
+                              "WHERE firm_mails.id_firm=" + f.id + " ORDER BY tasks.ordering ASC;";
+            SQLiteDataReader r = com.ExecuteReader();
+            if (r.FieldCount > 0)
+            {
+                while (r.Read())
+                {
+                    TaskToSend tmpt = new TaskToSend()
+                    {
+                        id = Int32.Parse(r["t_id"].ToString()),
+                        ordering = Int32.Parse(r["t_ordering"].ToString()),
+                        id_firm_mails = Int32.Parse(r["t_id_firm_mails"].ToString()),
+                        is_enable = Int32.Parse(r["t_is_enable"].ToString()),
+                    };
+                    tmp.Add(tmpt);
+                }
+            }
+            CloseConnection();
+            return tmp;
         }
 
 

@@ -33,7 +33,7 @@ namespace MailBomber
             FirmMails fm = DBWorker.Instance.GetFirmMailsObj(m);
             DBWorker.Instance.AddTask(new TaskToSend() {
                 is_enable = 1,
-                date_to_execute=new DateTask(dtp_Task.Value.Year, dtp_Task.Value.Month, dtp_Task.Value.Day).Date,
+                ordering = 1,
                 id_firm_mails = fm.id
             });
 

@@ -139,5 +139,11 @@ namespace MailBomber
                 MessageBox.Show("Настройки сохранены!");
             }
         }
+
+        private void заданияПоФирмамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            view_tsks_firm vtf = new view_tsks_firm();
+            vtf.Show();
+        }
     }
 }

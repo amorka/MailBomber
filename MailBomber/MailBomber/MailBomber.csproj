@@ -131,6 +131,12 @@
     <Compile Include="SInfo.cs" />
     <Compile Include="TasksList.cs" />
     <Compile Include="TaskToSend.cs" />
+    <Compile Include="view_tsks_firm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view_tsks_firm.Designer.cs">
+      <DependentUpon>view_tsks_firm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AutoCreateTasks.resx">
       <DependentUpon>AutoCreateTasks.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +161,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="view_tsks_firm.resx">
+      <DependentUpon>view_tsks_firm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

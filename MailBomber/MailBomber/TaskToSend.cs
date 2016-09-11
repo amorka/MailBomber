@@ -10,7 +10,7 @@ namespace MailBomber
     {
         public int id { get; set; }
         public int id_firm_mails { get; set; }
-        public string date_to_execute { get; set; }
+        public int ordering { get; set; }
         public int is_enable { get; set; }
     }
 }
