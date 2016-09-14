@@ -145,5 +145,12 @@ namespace MailBomber
             view_tsks_firm vtf = new view_tsks_firm();
             vtf.Show();
         }
+
+        private void просмотрИнфыПоФирмеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViewInfo vi = new ViewInfo();
+
+            vi.Show();
+        }
     }
 }

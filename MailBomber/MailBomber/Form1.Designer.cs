@@ -34,6 +34,7 @@
             this.заданияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сформироватьЗаданияНаВсюБазуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.заданияПоФирмамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.письмоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.редактироватьШаблонToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -57,7 +58,9 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.заданияПоФирмамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.редактированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.просмотрИнфыПоФирмеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.редактированиеДанныхБазыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -107,7 +110,8 @@
             this.заданияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.создатьЗаданиеНаКонкретныйEmailToolStripMenuItem,
             this.сформироватьЗаданияНаВсюБазуToolStripMenuItem,
-            this.заданияПоФирмамToolStripMenuItem});
+            this.заданияПоФирмамToolStripMenuItem,
+            this.редактированиеToolStripMenuItem});
             this.заданияToolStripMenuItem.Name = "заданияToolStripMenuItem";
             this.заданияToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.заданияToolStripMenuItem.Text = "Задания";
@@ -125,6 +129,13 @@
             this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
             this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Text = "Сформировать задания на всю базу";
             this.сформироватьЗаданияНаВсюБазуToolStripMenuItem.Click += new System.EventHandler(this.сформироватьЗаданияНаВсюБазуToolStripMenuItem_Click);
+            // 
+            // заданияПоФирмамToolStripMenuItem
+            // 
+            this.заданияПоФирмамToolStripMenuItem.Name = "заданияПоФирмамToolStripMenuItem";
+            this.заданияПоФирмамToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
+            this.заданияПоФирмамToolStripMenuItem.Text = "Задания по фирмам";
+            this.заданияПоФирмамToolStripMenuItem.Click += new System.EventHandler(this.заданияПоФирмамToolStripMenuItem_Click);
             // 
             // письмоToolStripMenuItem
             // 
@@ -391,12 +402,27 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Отправлено";
             // 
-            // заданияПоФирмамToolStripMenuItem
+            // редактированиеToolStripMenuItem
             // 
-            this.заданияПоФирмамToolStripMenuItem.Name = "заданияПоФирмамToolStripMenuItem";
-            this.заданияПоФирмамToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
-            this.заданияПоФирмамToolStripMenuItem.Text = "Задания по фирмам";
-            this.заданияПоФирмамToolStripMenuItem.Click += new System.EventHandler(this.заданияПоФирмамToolStripMenuItem_Click);
+            this.редактированиеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.просмотрИнфыПоФирмеToolStripMenuItem,
+            this.редактированиеДанныхБазыToolStripMenuItem});
+            this.редактированиеToolStripMenuItem.Name = "редактированиеToolStripMenuItem";
+            this.редактированиеToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
+            this.редактированиеToolStripMenuItem.Text = "Редактирование";
+            // 
+            // просмотрИнфыПоФирмеToolStripMenuItem
+            // 
+            this.просмотрИнфыПоФирмеToolStripMenuItem.Name = "просмотрИнфыПоФирмеToolStripMenuItem";
+            this.просмотрИнфыПоФирмеToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.просмотрИнфыПоФирмеToolStripMenuItem.Text = "Просмотр Инфы по фирме";
+            this.просмотрИнфыПоФирмеToolStripMenuItem.Click += new System.EventHandler(this.просмотрИнфыПоФирмеToolStripMenuItem_Click);
+            // 
+            // редактированиеДанныхБазыToolStripMenuItem
+            // 
+            this.редактированиеДанныхБазыToolStripMenuItem.Name = "редактированиеДанныхБазыToolStripMenuItem";
+            this.редактированиеДанныхБазыToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.редактированиеДанныхБазыToolStripMenuItem.Text = "Редактирование данных базы";
             // 
             // Form1
             // 
@@ -465,6 +491,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem заданияПоФирмамToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem редактированиеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem просмотрИнфыПоФирмеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem редактированиеДанныхБазыToolStripMenuItem;
     }
 }
 
