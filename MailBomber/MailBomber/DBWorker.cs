@@ -321,7 +321,7 @@ namespace MailBomber
             CloseConnection();
             return tmp;
         }
-        private Firm GetFirmWork(Firm f, FirmSearch fs)
+        public Firm GetFirmWork(Firm f, FirmSearch fs)
         {
             Firm tmp = null;
             SQLiteCommand com = connection.CreateCommand();

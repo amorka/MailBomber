@@ -45,23 +45,35 @@ namespace MailBomber
                 foreach (string mail_from_file in from_file) {
                     match = reg.Match(mail_from_file);
                     Group g_mail = match.Groups[1];
-                    
+
                     if (g_mail.Value == m.mail)
                     {
-                        
+
                         Group firm = match.Groups[2];
                         //????
-                        Firm ffb = DBWorker.Instance.GetFirmFromMailWork(m, MailSearch.ID);
-                        Firm fff= DBWorker.Instance.GetFirmFromMailWork(new Mail { mail=g_mail.Value }, MailSearch.MAIL);
-                        
-                        //
-                        if (ffb.id != fff.id) {
-                            Console.WriteLine(ffb.id.ToString() + " = " + fff.id.ToString());
-                            FirmMails fm = DBWorker.Instance.GetFirmMailsObjWork(ffb);
-                            fm.id_firm = fff.id;
-                            DBWorker.Instance.UpdateFirmMailsObjWork(fm);
+                        Firm f_t = DBWorker.Instance.GetFirmFromMailWork(m, MailSearch.ID);
+                        FirmMails fm = DBWorker.Instance.GetFirmMailsObjWork(m);
+
+                        if (f_t.name != match.Groups[2].Value) {
+                            /* Console.WriteLine("--------------------------------------------------------");
+                             Console.WriteLine("Майл = " + m.mail);
+                             Console.WriteLine("Фирма в базе = " + f_t.name);
+                             Console.WriteLine("Фирма в файле = " + match.Groups[2].Value);*/
+                            Firm f_new = DBWorker.Instance.GetFirmWork(new Firm() { name = match.Groups[2].Value }, FirmSearch.NAME);
+                            if (f_new != null) {
+                                fm.id_firm = f_new.id;
+                                DBWorker.Instance.UpdateFirmMailsObjWork(fm);
+                                //if (f_new.id == 251)
+                               // {
+                                    Console.WriteLine("---------------------Обновлено-------------------------");
+                                    Console.WriteLine("Строка из файла = "+ mail_from_file);
+                                    Console.WriteLine("Найдена фирма в базе по имени из файла = "+ f_new.name);
+                                    Console.WriteLine("Майл = " + m.mail);
+                                    Console.WriteLine("Фирма в базе = " + f_t.name);
+                                    Console.WriteLine("Фирма в файле = " + match.Groups[2].Value);
+                               // }
+                            }
                         }
-                        //
                     }
                 }
             }
