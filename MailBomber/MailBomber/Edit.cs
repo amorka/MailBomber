@@ -50,10 +50,11 @@ namespace MailBomber
                     {
                         
                         Group firm = match.Groups[2];
-
+                        //????
                         Firm ffb = DBWorker.Instance.GetFirmFromMailWork(m, MailSearch.ID);
                         Firm fff= DBWorker.Instance.GetFirmFromMailWork(new Mail { mail=g_mail.Value }, MailSearch.MAIL);
                         
+                        //
                         if (ffb.id != fff.id) {
                             Console.WriteLine(ffb.id.ToString() + " = " + fff.id.ToString());
                             FirmMails fm = DBWorker.Instance.GetFirmMailsObjWork(ffb);
