@@ -152,5 +152,11 @@ namespace MailBomber
 
             vi.Show();
         }
+
+        private void редактированиеДанныхБазыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Edit ed = new Edit();
+            ed.Show();
+        }
     }
 }

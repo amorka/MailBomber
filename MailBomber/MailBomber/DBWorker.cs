@@ -38,7 +38,7 @@ namespace MailBomber
         }
 
         private SQLiteConnection connection=null;
-        private string db_file = "mail_db2.db";
+        private string db_file = "mail_db.db";
 
         private void CreateConnection() {
             connection = new SQLiteConnection("Data Source="+db_file+"; Version=3;");
@@ -481,6 +481,13 @@ namespace MailBomber
             }
             return fm;
         }
+        public void UpdateFirmMailsObjWork(FirmMails new_fm) {
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "UPDATE firm_mails SET id_firm="+new_fm.id_firm+ ", id_mail="+new_fm.id_mail+
+                              " WHERE firm_mails.id=" + new_fm.id + ";";
+            com.ExecuteNonQuery();
+
+        }
 
         public Firm GetFirmFromMail(Mail m, MailSearch ms) {
             Firm f = null;
@@ -544,7 +551,7 @@ namespace MailBomber
                     com.CommandText = "SELECT firms.id as f_id, firms.name as f_name FROM firm_mails " +
                                       "INNER JOIN firms ON firm_mails.id_firm=firms.id " +
                                       "INNER JOIN mails ON firm_mails.id_mail=mails.id " +
-                                      "WHERE mails.mail LIKE " + m.mail + " LIMIT 1;";
+                                      "WHERE mails.mail LIKE '" + m.mail + "' LIMIT 1;";
                     r = com.ExecuteReader();
                     if (r.FieldCount > 0)
                     {
