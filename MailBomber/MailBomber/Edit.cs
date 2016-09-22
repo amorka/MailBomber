@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,9 +39,10 @@ namespace MailBomber
             ////////////////
             mails = new List<Mail>();
             mails = DBWorker.Instance.GetMails();
-            DBWorker.Instance.BeginWork();
+           // DBWorker.Instance.BeginWork();
             Regex reg = new Regex(@"^(.+)\|(.+)$", RegexOptions.IgnoreCase);
             Match match;
+            int i = 0;
             foreach (Mail m in mails) {
                 foreach (string mail_from_file in from_file) {
                     match = reg.Match(mail_from_file);
@@ -48,21 +50,23 @@ namespace MailBomber
 
                     if (g_mail.Value == m.mail)
                     {
-
+                        Thread.Sleep(50);
                         Group firm = match.Groups[2];
                         //????
-                        Firm f_t = DBWorker.Instance.GetFirmFromMailWork(m, MailSearch.ID);
-                        FirmMails fm = DBWorker.Instance.GetFirmMailsObjWork(m);
+                        Firm f_t = DBWorker.Instance.GetFirmFromMail(m, MailSearch.ID);
+                        Thread.Sleep(50);
+                        FirmMails fm = DBWorker.Instance.GetFirmMailsObj(m);
 
                         if (f_t.name != match.Groups[2].Value) {
                             /* Console.WriteLine("--------------------------------------------------------");
                              Console.WriteLine("Майл = " + m.mail);
                              Console.WriteLine("Фирма в базе = " + f_t.name);
                              Console.WriteLine("Фирма в файле = " + match.Groups[2].Value);*/
-                            Firm f_new = DBWorker.Instance.GetFirmWork(new Firm() { name = match.Groups[2].Value }, FirmSearch.NAME);
+                            Firm f_new = DBWorker.Instance.GetFirm(new Firm() { name = match.Groups[2].Value }, FirmSearch.NAME);
                             if (f_new != null) {
                                 fm.id_firm = f_new.id;
-                                DBWorker.Instance.UpdateFirmMailsObjWork(fm);
+                                DBWorker.Instance.UpdateFirmMailsObj(fm);
+                                DBWorker.Instance.UpdateFirm(f_new);
                                 //if (f_new.id == 251)
                                // {
                                     Console.WriteLine("---------------------Обновлено-------------------------");
@@ -71,13 +75,17 @@ namespace MailBomber
                                     Console.WriteLine("Майл = " + m.mail);
                                     Console.WriteLine("Фирма в базе = " + f_t.name);
                                     Console.WriteLine("Фирма в файле = " + match.Groups[2].Value);
+                                    Console.WriteLine("Шаг = " + i.ToString());
+                                i++;
+                                break;
                                // }
                             }
                         }
                     }
                 }
             }
-            DBWorker.Instance.EndWork();
+            Console.WriteLine("Обновлено " + i.ToString());
+            //DBWorker.Instance.EndWork();
 
 
 

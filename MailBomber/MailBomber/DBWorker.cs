@@ -488,6 +488,16 @@ namespace MailBomber
             com.ExecuteNonQuery();
 
         }
+        public void UpdateFirmMailsObj(FirmMails new_fm)
+        {
+            CreateConnection();
+            SQLiteCommand com = connection.CreateCommand();
+            com.CommandText = "UPDATE firm_mails SET id_firm=" + new_fm.id_firm + ", id_mail=" + new_fm.id_mail +
+                              " WHERE firm_mails.id=" + new_fm.id + ";";
+            com.ExecuteNonQuery();
+            CloseConnection();
+
+        }
 
         public Firm GetFirmFromMail(Mail m, MailSearch ms) {
             Firm f = null;
