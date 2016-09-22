@@ -222,14 +222,14 @@ namespace MailBomber
             return tmp_mails;
         }
 
-        private void AddFirm(Firm f) {
+        public void AddFirm(Firm f) {
             CreateConnection();
             SQLiteCommand com = connection.CreateCommand();
             com.CommandText = "INSERT INTO firms (name) VALUES ('" + f.name + "');";
             com.ExecuteNonQuery();
             CloseConnection();
         }
-        private void AddFirmWork(Firm f)
+        public void AddFirmWork(Firm f)
         {
             SQLiteCommand com = connection.CreateCommand();
             com.CommandText = "INSERT INTO firms (name) VALUES ('" + f.name + "');";
